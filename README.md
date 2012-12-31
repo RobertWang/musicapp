@@ -1,4 +1,4 @@
-
+/statistic/videostatistic
 #DOCUMENTATION#
 
 
@@ -14,7 +14,7 @@
 php artisan nhacso song_id_1 song_id_2
 ```
 
-EX: to fetch songs whose id's range from 1000000 to 1010000
+EX: to fetch `song_id` from 1000000 to 1010000
 
 ```bash
 php artisan nhacso 1000000 1010000
@@ -26,7 +26,7 @@ php artisan nhacso 1000000 1010000
 
 Their link's ids are encrypted in simple ways. They can be cracked by utilizing these arrays
 
-* _If Id > 1.000.000, use this one:_
+* _If `song_id` > 1.000.000, use this one:_
 ```coffeescript
 ONES = ['bw','bg','bQ','bA','aw','ag','aQ','aA','Zw','Zg']
 TENS = ['f','e','d','c','b','a','Z','Y','X','W']
@@ -36,9 +36,9 @@ TENSOFTHOUSANDS = ['R','Q','T','S','V','U','X','W','Z','Y']
 HUNDREDSOFTHOUSANDS = ['h','l','p']
 MILLIONS = ['','X1']  
 ```
-EX: Id: **1234567** should be translated into **X1pSV0ZZaA**
+EX: `song_id`: **1234567** should be translated into **X1pSV0ZZaA**
 
-* _If Id < 1.000.000, use the following:_
+* _If `song_id` < 1.000.000, use the following:_
 ```coffeescript
 ONES = ['f','e','d','c','b','a','Z','Y','X','W']
 TENS = ['N','J','F','B','d','Z','V','R','t','p']
@@ -47,7 +47,7 @@ THOUSANDS = ['R','Q','T','S','V','U','X','W','Z','Y']
 TENSOFTHOUSANDS = ['h','l','p','t','x','1','5','9','B','F']
 HUNDREDSOFTHOUSANDS = ['','X1','XF','XV','Wl','W1','WF','WV','Vl','V1']
 ```
-EX: Id : **345678** will become **XVxUVURX**
+EX: `song_id` : **345678** will become **XVxUVURX**
 
 > Notice: `XF` in `HUNDREDSOFTHOUSAND` 'maybe' true, coming from interpolation...
 
@@ -56,13 +56,13 @@ EX: Id : **345678** will become **XVxUVURX**
 We can grasp data with these links
 
 * Song:  
-	[http://nhacso.net/flash/song/xnl/1/id/XVxUVURX](http://nhacso.net/flash/song/xnl/1/id/XVxUVURX)
+	[http://nhacso.net/flash/song/xnl/1/id/XVxUVURX](http://nhacso.net/flash/song/xnl/1/id/XVxUVURX)  
 	> View page source to get the structure. XML Format
 * Video  
 	[http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y](http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y)  
 	`/id/X1xSV0Y` can be replaced by `id/14345`  
 * Album:  
-	[http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe](http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe)
+	[http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe](http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe)  
 	> Use on the last parameter only
 * Get Lyric  
 	[http://nhacso.net/song/lyric?song_id=934343](http://nhacso.net/song/lyric?song_id=934343)
