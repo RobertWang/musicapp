@@ -1,4 +1,3 @@
-/statistic/videostatistic
 #DOCUMENTATION#
 
 
@@ -57,12 +56,16 @@ We can grasp data with these links
 
 * Song:  
 	[http://nhacso.net/flash/song/xnl/1/id/XVxUVURX](http://nhacso.net/flash/song/xnl/1/id/XVxUVURX)  
+	[http://nhacso.net/song/parse?listIds=1250000](http://nhacso.net/song/parse?listIds=1250000)  
 	> View page source to get the structure. XML Format
-* Video  
+* Video:  
 	[http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y](http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y)  
+	[http://nhacso.net/video/parse?listIds=14345](http://nhacso.net/video/parse?listIds=14345)  
 	`/id/X1xSV0Y` can be replaced by `id/14345`  
+
 * Album:  
 	[http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe](http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe)  
+	[http://nhacso.net/album/parse?listIds=17000](http://nhacso.net/album/parse?listIds=17000)  
 	> Use on the last parameter only
 * Get Lyric  
 	[http://nhacso.net/song/lyric?song_id=934343](http://nhacso.net/song/lyric?song_id=934343)
@@ -77,8 +80,9 @@ We can grasp data with these links
 	[http://nhacso.net/artist/parseamountsong?listIds=54](http://nhacso.net/artist/parseamountsong?listIds=54)
 
 * Get Artist  
-	[http://nhacso.net/artist/parseamountsong?listIds=54](http://nhacso.net/artist/parseamountsong?listIds=54)
-	[http://nhacso.net/artist/desc?listIds=54](http://nhacso.net/artist/desc?listIds=54)
+	[http://nhacso.net/artist/parseamountsong?listIds=54](http://nhacso.net/artist/parseamountsong?listIds=54)  
+	[http://nhacso.net/artist/desc?listIds=54](http://nhacso.net/artist/desc?listIds=54)  
+	[http://nhacso.net/artist/parse?listIds=311](http://nhacso.net/artist/parse?listIds=311)  
 * Get Suggestion  
 	[http://nhacso.net/artist/parsesuggest?listIds=54](http://nhacso.net/artist/parsesuggest?listIds=54)
 * Get issued time  
@@ -86,6 +90,13 @@ We can grasp data with these links
 
 *UPDATE:* Get song_id from 300.000 to 1.250.000 on December 31, 2012  
 *Stats:* ~849998 songs ~14016 videos
+
+* MICS : Check these links again  
+	[http://nhacso.net/song/getobjectsong?id=945455](http://nhacso.net/song/getobjectsong?id=945455)  
+	[http://nhacso.net/video/getobjectvideo?id=14300](http://nhacso.net/video/getobjectvideo?id=14300)  
+	`type=POST` <= check in server script. Functions `getObjectVideo()`and `getObjectSong()`  
+
+---
 
 ## Music.go.vn##
 
@@ -110,6 +121,8 @@ We can grasp data with these links
 *STATS:* Total songs: 173733. Total albums: 17556 .  
 Updated on December 12, 2012
 
+---
+
 ## Hcm.nhac.vui.vn ##
 
 * Get Song  
@@ -118,6 +131,8 @@ Updated on December 12, 2012
 * Get Album  
 	[http://hcm.nhac.vui.vn/asx2.php?type=3&id=24000](http://hcm.nhac.vui.vn/asx2.php?type=3&id=24000)  
 	`type=3` => album
+
+---
 
 ##Chacha.vn##
 * Get Song  
