@@ -100,6 +100,8 @@ We can grasp data with these links
 
 ## Music.go.vn##
 
+[http://music.go.vn/Ajax/RenderXmlHandler.ashx?sid=47278](http://music.go.vn/Ajax/RenderXmlHandler.ashx?sid=47278)
+
 * Get Song Data  
 	[http://music.go.vn/Ajax/SongHandler.ashx?type=getsonginfo&sid=12343](http://music.go.vn/Ajax/SongHandler.ashx?type=getsonginfo&sid=12343)  
 	`type=getsonginfo`  
@@ -141,4 +143,89 @@ Updated on December 12, 2012
 * Get Album  
 	[http://www.chacha.vn/album/play/7039](http://www.chacha.vn/album/play/7039)  
 	`play/id` <= insert `album_id`
+
+--- 
+
+##Nghenhac.info ##
+* Get album
+	[http://nghenhac.info/Farm/PlayAlbumJson.ashx?p=7BB61600815BA707](http://nghenhac.info/Farm/PlayAlbumJson.ashx?p=7BB61600815BA707)  
+	note complete
+
+---
+
+##Vietgiaitri.com ##
+* Get album
+	[http://img.vietgiaitri.com/music.php?act=xml&sm=a593b5ed00bd1442bc6741cab4bdda2b&time=1357584049&uid=0&gid=2&aid=6899&repeat=always](http://img.vietgiaitri.com/music.php?act=xml&sm=a593b5ed00bd1442bc6741cab4bdda2b&time=1357584049&uid=0&gid=2&aid=6899&repeat=always)  
+	`aid=` <= insert number  
+
+---
+
+## nhac.hay365.com ##
+* Get song  
+	[http://static.hay365.com/song_43151.xml](http://static.hay365.com/song_43151.xml)  
+
+* Get album
+	[http://static.hay365.com/album_3369.xml](http://static.hay365.com/album_3369.xml)  
+	`album_3369` <= change number  --- ~3300 albums
+
+---
+
+## music.vnn.vn##
+* Get album  
+	[http://music.vnn.vn//XML/Album/2013/1/album-huong-lan-mo-lai-vang-trang20130108020942.xml](http://music.vnn.vn//XML/Album/2013/1/album-huong-lan-mo-lai-vang-trang20130108020942.xml)  
+	not complete  
+
+---
+
+## nghenhacmoi.net##
+* Get album  
+	[http://nghenhacmoi.net/music/xml/3/701.xml](http://nghenhacmoi.net/music/xml/3/701.xml)  
+	Note: just thousands of songs, ~700 albums 
+
+---
+
+## nhacvang.net ##
+* Get album  
+	[http://nghenhacvang.net/playplaylist/5725.xml](http://nghenhacvang.net/playplaylist/5725.xml)  
+	~5000 albums  
+
+# FETCH ALL ALBUMS FROM NHASO.NET WITH NODE.JS
+
+Type in CLI, change the directory which contains these files, default is `~/Box Documents/Sites/nodejs`
+
+- To create tables : `node createAlbumTable.js add`
+- To delete tables : `node createAlbumTable.js delete`
+- To get all albums from id 1 to id 2: `node fetchdatafromNS.js No1 No2`    
+where `No1` is the first Id and `No2` is the last
+EX: `node fetchdatafromNS.js 500000 502000` <- can run parallelly 3 programs 
+
+# ELASTICSEARCH
+
+## Couchbase
+
+Install the couchbase nosql database
+
+## MySQL
+
+Run `bin/elasticsearch -f` , install plugin on [github](https://github.com/jprante/elasticsearch-river-jdbc), read the introduction then crawl the following databse for example:
+
+```
+curl -XPUT 'localhost:9200/_river/ns_song/_meta' -d '{
+    "type" : "jdbc",
+    "jdbc" : {
+        "driver" : "com.mysql.jdbc.Driver",
+        "url" : "jdbc:mysql://localhost:8889/anbinh",
+        "user" : "root",
+        "password" : "root",
+        "sql" : "select * from ns_song"
+    },
+    "index" : {
+        "index" : "jdbc",
+        "type" : "jdbc"
+    }
+}'
+```
+
+Notice: `ns_song`, choose `localhost:8889`, database `anbinh` , username `root`, password `root`, select all from table `ns_song`, choose index `jdbc` and type `jdbci`
+
 
