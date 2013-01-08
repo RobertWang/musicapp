@@ -88,8 +88,8 @@ We can grasp data with these links
 * Get issued time  
 	[http://nhacso.net/album/getdescandissuetime?listIds=347553](http://nhacso.net/album/getdescandissuetime?listIds=347553)
 
-*UPDATE:* Get song_id from 300.000 to 1.250.000 on December 31, 2012  
-*Stats:* ~849998 songs ~14016 videos
+*UPDATE:* Get song_id from 300.000 to 1.250.000 on December 31, 2012. On Jan 08, scan 541148 albums, filter and insert 165465 albums into database
+*Stats:* ~849998 songs ~14016 videos ~500000 abums
 
 * MICS : Check these links again  
 	[http://nhacso.net/song/getobjectsong?id=945455](http://nhacso.net/song/getobjectsong?id=945455)  
@@ -129,20 +129,30 @@ Updated on December 12, 2012
 
 * Get Song  
 	[http://hcm.nhac.vui.vn/asx2.php?type=1&id=299321](http://hcm.nhac.vui.vn/asx2.php?type=1&id=299321)  
-	`type=1` => song
+	`type=1` => song  
+
+	[http://hcm.nhac.vui.vn/asx2.php?type=5&id=297053](http://hcm.nhac.vui.vn/asx2.php?type=5&id=297053)  
+	`type=5` => secret 320 kbps links  
 * Get Album  
 	[http://hcm.nhac.vui.vn/asx2.php?type=3&id=24000](http://hcm.nhac.vui.vn/asx2.php?type=3&id=24000)  
-	`type=3` => album
+	`type=3` => album  
+
+*STATS:* ~300995 songs, ~25160 albums
 
 ---
 
 ##Chacha.vn##
 * Get Song  
-	[http://www.chacha.vn/song/play/399999](http://www.chacha.vn/song/play/399999)  
+	[http://www.chacha.vn/song/play/420343](http://www.chacha.vn/song/play/420343)  
 	`song/play` <= insert `song_id`  
+
 * Get Album  
-	[http://www.chacha.vn/album/play/7039](http://www.chacha.vn/album/play/7039)  
-	`play/id` <= insert `album_id`
+	[http://www.chacha.vn/album/play/7333](http://www.chacha.vn/album/play/7333)  
+	`play/id` <= insert `album_id`  
+	NOTE: `http://s2.chacha.vn/artists//s5/309/309.jpg?v=0` <= look at property `thumb` to get  artist id  
+* Get Thumbnail  
+	[http://s2.chacha.vn/albums//s3/7223/7223.jpg?v=0](http://s2.chacha.vn/albums//s3/7223/7223.jpg?v=0)  
+	Note: get thumbnail from albums  
 
 --- 
 
