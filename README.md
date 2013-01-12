@@ -8,6 +8,7 @@
 * Type the following command
 
 # Usage #
+`` 
 
 ```bash
 php artisan nhacso song_id_1 song_id_2
@@ -57,16 +58,84 @@ We can grasp data with these links
 * Song:  
 	[http://nhacso.net/flash/song/xnl/1/id/XVxUVURX](http://nhacso.net/flash/song/xnl/1/id/XVxUVURX)  
 	[http://nhacso.net/song/parse?listIds=1250000](http://nhacso.net/song/parse?listIds=1250000)  
+	
+	> `listIds`means you can pass parameters with the following pattern : `para1,para2,para3`  
+	
+	[http://nhacso.net/artist/parse?listIds=5092,186,131,47,2088,2130,80,2407,17,55](http://nhacso.net/artist/parse?listIds=5092,186,131,47,2088,2130,80,2407,17,55)  
+	> Get similar songs w.r.t. `song_id` X1pUUkFdaA , `5092,186,131,47,2088,2130,80,2407,17,55`are `artistId`
+
+	[http://nhacso.net/statistic/songlike?listIds=1251227](http://nhacso.net/statistic/songlike?listIds=1251227)  
+	> Get `songlike`  
+
+	[http://nhacso.net/statistic/songtotallisten?listIds=1260796,1260795](http://nhacso.net/statistic/songtotallisten?listIds=1260796,1260795)  
+
+	> Get `songtotallisten` ; `1260796,1260795`are songIds  
+
+	[http://nhacso.net/statistic/songstatistic?listIds=1260796,1260795](http://nhacso.net/statistic/songstatistic?listIds=1260796,1260795)  
+
+	> Get `songstatistic`; `1260796,1260795` are songIds  
+
 	> View page source to get the structure. XML Format
 * Video:  
-	[http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y](http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y)  
+	[http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y](http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y) 
+	> `/id/X1xSV0Y` can be replaced by `id/14345`  
+
 	[http://nhacso.net/video/parse?listIds=14345](http://nhacso.net/video/parse?listIds=14345)  
-	`/id/X1xSV0Y` can be replaced by `id/14345`  
+	
+	[http://nhacso.net/video/numbersub?listIds=14502%2C14506](http://nhacso.net/video/numbersub?listIds=14502%2C14506)  
+
+	[http://nhacso.net/statistic/videostatistic?listIds=14449](http://nhacso.net/statistic/videostatistic?listIds=14449)  
+
+	> Get `videostatistic`  
+
+	MISC:  
+	[http://nhacso.net/video/statisticview](http://nhacso.net/video/statisticview)  
+	> Request Method: `POST` , form data: `id:14449` <= increase song plays. Use cURL command `curl -XPOST http://nhacso.net/video/statisticview -d  "id=14449"`  
+
+	[http://nhacso.net/producer/getproducer](http://nhacso.net/producer/getproducer)  
+	> Request Method: `POST` , form data: `listIds:10` <= get procedure. Use cURL command `curl -XPOST http://nhacso.net/producer/getproducer  -d "listIds=10"`  
+
 
 * Album:  
 	[http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe](http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe)  
+
+	> Use on the last parameter only  
+
 	[http://nhacso.net/album/parse?listIds=17000](http://nhacso.net/album/parse?listIds=17000)  
-	> Use on the last parameter only
+
+	[http://nhacso.net/album/getstatistic?listIds=543996,543700,543565,542242](http://nhacso.net/album/getstatistic?listIds=543996,543700,543565,542242)  
+	
+	> Get album list stats  `543996,543700,543565,542242` are albumIds
+
+	[http://nhacso.net/statistic/albumtotallisten?listIds=543700](http://nhacso.net/statistic/albumtotallisten?listIds=543700)  
+
+	> Get `albumtotallisten`  
+
+	[http://nhacso.net/album/getstatistic?listIds=6884](http://nhacso.net/album/getstatistic?listIds=6884)  
+
+	> `getstatistic` of an album  
+
+	[http://nhacso.net/statistic/albumtotallisten?listIds=543700](http://nhacso.net/statistic/albumtotallisten?listIds=543700)  
+
+	> Get `albumtotallisten` <= aggregation of included songs
+
+	[http://nhacso.net/album/gettotalsong?listIds=533138%2C535960](http://nhacso.net/album/gettotalsong?listIds=533138%2C535960)  
+
+	> `gettotalsong` of an album  
+
+	[http://nhacso.net/album/getdescandissuetime?listIds=543996,543700,543565,542242](http://nhacso.net/album/getdescandissuetime?listIds=543996,543700,543565,542242)  
+
+	> `getdescandissuetime`: get description and issued moment  
+
+	[http://nhacso.net/album/getissuetime?listIds=447529,321676,310104,310102](http://nhacso.net/album/getissuetime?listIds=447529,321676,310104,310102)  
+
+	> `getissuetime`
+
+* Get Category 
+	
+	[http://nhacso.net/category/getcategory?listIds=1,2,4,5](http://nhacso.net/category/getcategory?listIds=1,2,4,5)  
+	> `getcategory` <= get list
+
 * Get Lyric  
 	[http://nhacso.net/song/lyric?song_id=934343](http://nhacso.net/song/lyric?song_id=934343)
 
@@ -94,7 +163,11 @@ We can grasp data with these links
 * MICS : Check these links again  
 	[http://nhacso.net/song/getobjectsong?id=945455](http://nhacso.net/song/getobjectsong?id=945455)  
 	[http://nhacso.net/video/getobjectvideo?id=14300](http://nhacso.net/video/getobjectvideo?id=14300)  
-	`type=POST` <= check in server script. Functions `getObjectVideo()`and `getObjectSong()`  
+	> `type=POST` <= check in server script. Functions `getObjectVideo()`and `getObjectSong()`  
+
+	[http://nhacso.net/song/listen](http://nhacso.net/song/listen)  
+
+	> Request Method: `POST` , form data: `id:1142573` <= increase song plays. Use cURL command `curl -XPOST http://nhacso.net/song/listen -d  "id=1260645"`
 
 ---
 
@@ -157,47 +230,64 @@ Updated on December 12, 2012
 --- 
 
 ##Nghenhac.info ##
-* Get album
+* Get Album
 	[http://nghenhac.info/Farm/PlayAlbumJson.ashx?p=7BB61600815BA707](http://nghenhac.info/Farm/PlayAlbumJson.ashx?p=7BB61600815BA707)  
 	note complete
 
 ---
 
 ##Vietgiaitri.com ##
-* Get album
+* Get Album
 	[http://img.vietgiaitri.com/music.php?act=xml&sm=a593b5ed00bd1442bc6741cab4bdda2b&time=1357584049&uid=0&gid=2&aid=6899&repeat=always](http://img.vietgiaitri.com/music.php?act=xml&sm=a593b5ed00bd1442bc6741cab4bdda2b&time=1357584049&uid=0&gid=2&aid=6899&repeat=always)  
 	`aid=` <= insert number  
 
 ---
 
-## nhac.hay365.com ##
-* Get song  
+## Nhac.hay365.com ##
+* Get Song  
 	[http://static.hay365.com/song_43151.xml](http://static.hay365.com/song_43151.xml)  
 
-* Get album
+* Get Album
 	[http://static.hay365.com/album_3369.xml](http://static.hay365.com/album_3369.xml)  
 	`album_3369` <= change number  --- ~3300 albums
 
 ---
 
-## music.vnn.vn##
-* Get album  
+## Music.vnn.vn##
+* Get Album  
 	[http://music.vnn.vn//XML/Album/2013/1/album-huong-lan-mo-lai-vang-trang20130108020942.xml](http://music.vnn.vn//XML/Album/2013/1/album-huong-lan-mo-lai-vang-trang20130108020942.xml)  
 	not complete  
 
 ---
 
-## nghenhacmoi.net##
-* Get album  
+## Nghenhacmoi.net##
+* Get Album  
 	[http://nghenhacmoi.net/music/xml/3/701.xml](http://nghenhacmoi.net/music/xml/3/701.xml)  
 	Note: just thousands of songs, ~700 albums 
 
 ---
 
-## nhacvang.net ##
-* Get album  
+## Nhacvang.net ##
+* Get Album  
 	[http://nghenhacvang.net/playplaylist/5725.xml](http://nghenhacvang.net/playplaylist/5725.xml)  
 	~5000 albums  
+
+---
+
+## Store.zing.vn ##
+
+```
+ONES = ['A','E','I','M','Q','U','Y','c','g','k']
+TENS = ['MD','MT','Mj','Mz','ND','NT','Nj','Nz','OD','OT']
+HUNDREDS = ['w','x','y','z','0','1','2','3','4','5']
+THOUSANDS = ['A','E','I','M','Q','U','Y','c','g','k']
+TENSOFTHOUSANDS = ['MD','MT','Mj','Mz','ND','NT','Nj','Nz','OD','OT']
+HUNDREDSOFTHOUSANDS = ['','MC0x','MC0y','MC0z','MC00','MC01','MC02','MC03','MC04']
+```
+* Get Song  
+	[http://store.zing.vn/mediaxml?mediaId=MC02MzU2MDc=](http://store.zing.vn/mediaxml?mediaId=MC02MzU2MDc=)  
+	`mediaId=MC02MzU2MDc=` <=> `mediaId=735607=` . Notice the equal sign  
+---
 
 # FETCH ALL ALBUMS FROM NHASO.NET WITH NODE.JS
 
@@ -208,6 +298,7 @@ Type in CLI, change the directory which contains these files, default is `~/Box 
 - To get all albums from id 1 to id 2: `node fetchdatafromNS.js No1 No2`    
 where `No1` is the first Id and `No2` is the last
 EX: `node fetchdatafromNS.js 500000 502000` <- can run parallelly 3 programs 
+
 
 # ELASTICSEARCH
 
