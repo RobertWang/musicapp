@@ -276,7 +276,7 @@ Updated on December 12, 2012
 
 ## Store.zing.vn ##
 
-```
+```coffeescript
 ONES = ['A','E','I','M','Q','U','Y','c','g','k']
 TENS = ['MD','MT','Mj','Mz','ND','NT','Nj','Nz','OD','OT']
 HUNDREDS = ['w','x','y','z','0','1','2','3','4','5']
