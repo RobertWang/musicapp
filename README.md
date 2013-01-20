@@ -53,10 +53,19 @@ EX: `song_id` : **345678** will become **XVxUVURX**
 
 ### Get links automatically###
 
-We can grasp data with these links
+We can grasp data with these links  
 
+* Using CLI  
+[http://nhacso.net/download-nhac/link-tu-tao/=.1250000.html](http://nhacso.net/download-nhac/link-tu-tao/=.1250000.html)  
+`1250000` is `songid`. Remember to use cookie `Auth=V0JAaVlcZkNEXlwAECkcCzVFAgNVAhwuXgtnBwdbAkkEPF1UbQ`. Following the instance below:
+```bash
+$curl "http://nhacso.net/download-nhac/link-tu-tao/=.1250000.html" -v -o sample.mp3 -b Auth=V0JAaVlcZkNEXlwAECkcCzVFAgNVAhwuXgtnBwdbAkkEPF1UbQ
+```
 * Song:  
 	[http://nhacso.net/flash/song/xnl/1/id/XVxUVURX](http://nhacso.net/flash/song/xnl/1/id/XVxUVURX)  
+	  
+
+
 	[http://nhacso.net/song/parse?listIds=1250000](http://nhacso.net/song/parse?listIds=1250000)  
 	
 	> `listIds`means you can pass parameters with the following pattern : `para1,para2,para3`  
@@ -83,6 +92,8 @@ We can grasp data with these links
 	[http://nhacso.net/video/parse?listIds=14345](http://nhacso.net/video/parse?listIds=14345)  
 	
 	[http://nhacso.net/video/numbersub?listIds=14502%2C14506](http://nhacso.net/video/numbersub?listIds=14502%2C14506)  
+
+	> Get Subtitles 
 
 	[http://nhacso.net/statistic/videostatistic?listIds=14449](http://nhacso.net/statistic/videostatistic?listIds=14449)  
 
@@ -131,6 +142,10 @@ We can grasp data with these links
 
 	> `getissuetime`
 
+	*DEFAULT ALBUMS*:   
+	[http://st.nhacso.net/images/album/thumb_album_120x120.jpg](http://st.nhacso.net/images/album/thumb_album_120x120.jpg)  
+
+
 * Get Category 
 	
 	[http://nhacso.net/category/getcategory?listIds=1,2,4,5](http://nhacso.net/category/getcategory?listIds=1,2,4,5)  
@@ -157,8 +172,8 @@ We can grasp data with these links
 * Get issued time  
 	[http://nhacso.net/album/getdescandissuetime?listIds=347553](http://nhacso.net/album/getdescandissuetime?listIds=347553)
 
-*UPDATE:* Get song_id from 300.000 to 1.250.000 on December 31, 2012. On Jan 08, scan 541148 albums, filter and insert 165465 albums into database
-*Stats:* ~849998 songs ~14016 videos ~500000 abums
+*UPDATE:* Get song_id from 1 to 1.261.000 on January 11, 2012. On Jan 08, scan 541148 albums, filter and insert 165465 albums into database
+*Stats:* 977721 songs on Jan 11; ~14016 videos ~500000 abums
 
 * MICS : Check these links again  
 	[http://nhacso.net/song/getobjectsong?id=945455](http://nhacso.net/song/getobjectsong?id=945455)  
