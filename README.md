@@ -72,7 +72,7 @@ Auto login
 [http://nhacso.net/sso.php?id=1240090058&value=2&action=login&sid=V0JAb1ldb0NGV1wWQzIZUDtEQFoAAh81Bg1oRRBbFhwfLAMQag%3D%3D](http://nhacso.net/sso.php?id=1240090058&value=2&action=login&sid=V0JAb1ldb0NGV1wWQzIZUDtEQFoAAh81Bg1oRRBbFhwfLAMQag%3D%3D)  
 Insert proper `Auth`  
 
-### Song ###  
+###Song###  
 [http://nhacso.net/flash/song/xnl/1/id/XVxUVURX](http://nhacso.net/flash/song/xnl/1/id/XVxUVURX)  
   
 
@@ -97,7 +97,7 @@ Insert proper `Auth`
 
 > View page source to get the structure. XML Format  
 
-### Video ### 
+###Video### 
 [http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y](http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y) 
 > `/id/X1xSV0Y` can be replaced by `id/14345`  
 
@@ -119,7 +119,7 @@ MISC:
 > Request Method: `POST` , form data: `listIds:10` <= get procedure. Use cURL command `curl -XPOST http://nhacso.net/producer/getproducer  -d "listIds=10"`  
 
 
-### Album ###
+###Album###
 [http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe](http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe)  
 
 > Use on the last parameter only  
@@ -157,7 +157,7 @@ MISC:
 *DEFAULT ALBUMS*:   
 [http://st.nhacso.net/images/album/thumb_album_120x120.jpg](http://st.nhacso.net/images/album/thumb_album_120x120.jpg)  
 
-### MISC ###
+###MISC###
 **Get Category**
 	
 [http://nhacso.net/category/getcategory?listIds=1,2,4,5](http://nhacso.net/category/getcategory?listIds=1,2,4,5)  
