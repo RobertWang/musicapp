@@ -72,7 +72,7 @@ Auto login
 [http://nhacso.net/sso.php?id=1240090058&value=2&action=login&sid=V0JAb1ldb0NGV1wWQzIZUDtEQFoAAh81Bg1oRRBbFhwfLAMQag%3D%3D](http://nhacso.net/sso.php?id=1240090058&value=2&action=login&sid=V0JAb1ldb0NGV1wWQzIZUDtEQFoAAh81Bg1oRRBbFhwfLAMQag%3D%3D)  
 Insert proper `Auth`  
 
-###Song###  
+###Song###
 [http://nhacso.net/flash/song/xnl/1/id/XVxUVURX](http://nhacso.net/flash/song/xnl/1/id/XVxUVURX)  
   
 
@@ -97,7 +97,7 @@ Insert proper `Auth`
 
 > View page source to get the structure. XML Format  
 
-###Video### 
+###Video###
 [http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y](http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y) 
 > `/id/X1xSV0Y` can be replaced by `id/14345`  
 
