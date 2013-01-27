@@ -59,7 +59,7 @@ curl  https://id.fpt.net/?display=iframe -d "hash=a9785186138d519050ea35a178b749
 
 
 ```
-curl -s https://id.fpt.net/\?display\=iframe -d "hash=a9785186138d519050ea35a178b749ff&username=goofyfpt%40outlook.com&password=goofyfpt" -b "FPTID=j96g6to8r0qvcvgsmlnn04he43" -i| grep -i 'Auth\=[0-9a-zA-Z\%]\\+'| sed -e 's/Set\\-Cookie\: //' -e 's/\; path\=\/\; domain\=\\.fpt\\.net\; httponly//'
+curl -s https://id.fpt.net/\?display\=iframe -d "hash=a9785186138d519050ea35a178b749ff&username=goofyfpt%40outlook.com&password=goofyfpt" -b "FPTID=j96g6to8r0qvcvgsmlnn04he43" -i| grep -i 'Auth\=[0-9a-zA-Z\%]\+'| sed -e 's/Set\-Cookie\: //' -e 's/\; path\=\/\; domain\=\.fpt\.net\; httponly//'
 ```
 **Get song** 
 ```bash
