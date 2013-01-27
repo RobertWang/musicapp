@@ -3,186 +3,199 @@
 
 # CLI Installation #
 
-* Use Laravel framework
-* Chane pwd to laravel directory
-* Type the following command
+None
 
 # Usage #
-`` 
 
-```bash
-php artisan nhacso song_id_1 song_id_2
-```
-
-EX: to fetch `song_id` from 1000000 to 1010000
-
-```bash
-php artisan nhacso 1000000 1010000
-```
+Using nodejs
 
 # Introduction #
 
 ## Nhacso.net ##
 
-Their link's ids are encrypted in simple ways. They can be cracked by utilizing these arrays
+Their link's ids are encrypted in simple ways. They can be cracked by utilizing this func
 
-* _If `song_id` > 1.000.000, use this one:_
 ```coffeescript
-ONES = ['bw','bg','bQ','bA','aw','ag','aQ','aA','Zw','Zg']
-TENS = ['f','e','d','c','b','a','Z','Y','X','W']
-HUNDREDS = ['N','J','F','B','d','Z','V','R','t','p']
-THOUSANDS = ['U0','Uk','UU','UE','V0','Vk','VU','VE','W0','Wk']
-TENSOFTHOUSANDS = ['R','Q','T','S','V','U','X','W','Z','Y']
-HUNDREDSOFTHOUSANDS = ['h','l','p']
-MILLIONS = ['','X1']  
+decodeId = (songId) ->
+	arr = Array::slice.call songId.toString()
+	arr = arr.map (value) -> parseInt(value)
+	a = []
+	songid = ""
+	a[1] = ['bw','bg','bQ','bA','aw','ag','aQ','aA','Zw','Zg']
+	a[2] = ['f','e','d','c','b','a','Z','Y','X','W']
+	a[3] = ['N','J','F','B','d','Z','V','R','t','p']
+	a[4] = ['U0','Uk','UU','UE','V0','Vk','VU','VE','W0','Wk']
+	a[5] = ['R','Q','T','S','V','U','X','W','Z','Y']
+	a[6] = ['h','l','p','t','x','1','5','9','B','F']
+	a[7] = ['','X1','XF','XV','Wl','W1','WF','WV','Vl','V1']
+	songid += a[7-i+1][arr[i-1]] for i in [1..arr.length]
+	songid
 ```
-EX: `song_id`: **1234567** should be translated into **X1pSV0ZZaA**
 
-* _If `song_id` < 1.000.000, use the following:_
-```coffeescript
-ONES = ['f','e','d','c','b','a','Z','Y','X','W']
-TENS = ['N','J','F','B','d','Z','V','R','t','p']
-HUNDREDS = ['U0','Uk','UU','UE','V0','Vk','VU','VE','W0','Wk']
-THOUSANDS = ['R','Q','T','S','V','U','X','W','Z','Y']
-TENSOFTHOUSANDS = ['h','l','p','t','x','1','5','9','B','F']
-HUNDREDSOFTHOUSANDS = ['','X1','XF','XV','Wl','W1','WF','WV','Vl','V1']
-```
 EX: `song_id` : **345678** will become **XVxUVURX**
 
-> Notice: `XF` in `HUNDREDSOFTHOUSAND` 'maybe' true, coming from interpolation...
 
 ### Get links automatically###
 
 We can grasp data with these links  
 
-* Using CLI  
+**Using CLI**  
 [http://nhacso.net/download-nhac/link-tu-tao/=.1250000.html](http://nhacso.net/download-nhac/link-tu-tao/=.1250000.html)  
-`1250000` is `songid`. Remember to use cookie `Auth=V0JAaVlcZkNEXlwAECkcCzVFAgNVAhwuXgtnBwdbAkkEPF1UbQ`. Following the instance below:
+`1250000` is `songid`. 
+
+**Get cookie** `FPTID` and **Hash** `hash`
 ```bash
-$curl "http://nhacso.net/download-nhac/link-tu-tao/=.1250000.html" -v -o sample.mp3 -b Auth=V0JAaVlcZkNEXlwAECkcCzVFAgNVAhwuXgtnBwdbAkkEPF1UbQ
+curl  https://id.fpt.net/\?display\=iframe -v
 ```
-* Song:  
-	[http://nhacso.net/flash/song/xnl/1/id/XVxUVURX](http://nhacso.net/flash/song/xnl/1/id/XVxUVURX)  
-	  
+*USING `grep` and `sed`*  
+```
+curl -s https://id.fpt.net/\?display\=iframe -i | grep -i -E "FPTID\=[0-9a-zA-Z]+|id\=\"hash\" value\=\"" | sed -e 's/Set\\-Cookie\: //' -e 's/\; path=\///' -e 's/\<input type\=\"hidden\" name\=\"hash\" id\=\"hash\" value\=\"//' -e 's/\" \/\>//'
+```
+**Get cookie** `Auth`  
+```bash
+curl  https://id.fpt.net/?display=iframe -d "hash=a9785186138d519050ea35a178b749ff&username=goofyfpt%40outlook.com&password=goofyfpt" -b "FPTID=j96g6to8r0qvcvgsmlnn04he43" -v
+```
+`bash` and `FPTID` have to be consitent  
 
 
-	[http://nhacso.net/song/parse?listIds=1250000](http://nhacso.net/song/parse?listIds=1250000)  
+```
+curl -s https://id.fpt.net/\?display\=iframe -d "hash=a9785186138d519050ea35a178b749ff&username=goofyfpt%40outlook.com&password=goofyfpt" -b "FPTID=j96g6to8r0qvcvgsmlnn04he43" -i| grep -i 'Auth\=[0-9a-zA-Z\%]\\+'| sed -e 's/Set\\-Cookie\: //' -e 's/\; path\=\/\; domain\=\\.fpt\\.net\; httponly//'
+```
+**Get song** 
+```bash
+curl "http://nhacso.net/download-nhac/link-tu-tao/=.1250000.html" -o sample.mp3 -b Auth=V0JAaVlcZkNEXlwAECkcCzVFAgNVAhwuXgtnBwdbAkkEPF1UbQ
+```
+Remember to use cookie. EX: `Auth=V0JAaVlcZkNEXlwAECkcCzVFAgNVAhwuXgtnBwdbAkkEPF1UbQ`. 
+
+**BONUS**  
+Auto login  
+[http://nhacso.net/sso.php?id=1240090058&value=2&action=login&sid=V0JAb1ldb0NGV1wWQzIZUDtEQFoAAh81Bg1oRRBbFhwfLAMQag%3D%3D](http://nhacso.net/sso.php?id=1240090058&value=2&action=login&sid=V0JAb1ldb0NGV1wWQzIZUDtEQFoAAh81Bg1oRRBbFhwfLAMQag%3D%3D)  
+Insert proper `Auth`  
+
+### Song ###  
+[http://nhacso.net/flash/song/xnl/1/id/XVxUVURX](http://nhacso.net/flash/song/xnl/1/id/XVxUVURX)  
+  
+
+
+[http://nhacso.net/song/parse?listIds=1250000](http://nhacso.net/song/parse?listIds=1250000)  
+
+> `listIds`means you can pass parameters with the following pattern : `para1,para2,para3`  
+
+[http://nhacso.net/artist/parse?listIds=5092,186,131,47,2088,2130,80,2407,17,55](http://nhacso.net/artist/parse?listIds=5092,186,131,47,2088,2130,80,2407,17,55)  
+> Get similar songs w.r.t. `song_id` X1pUUkFdaA , `5092,186,131,47,2088,2130,80,2407,17,55`are `artistId`
+
+[http://nhacso.net/statistic/songlike?listIds=1251227](http://nhacso.net/statistic/songlike?listIds=1251227)  
+> Get `songlike`  
+
+[http://nhacso.net/statistic/songtotallisten?listIds=1260796,1260795](http://nhacso.net/statistic/songtotallisten?listIds=1260796,1260795)  
+
+> Get `songtotallisten` ; `1260796,1260795`are songIds  
+
+[http://nhacso.net/statistic/songstatistic?listIds=1260796,1260795](http://nhacso.net/statistic/songstatistic?listIds=1260796,1260795)  
+
+> Get `songstatistic`; `1260796,1260795` are songIds  
+
+> View page source to get the structure. XML Format  
+
+### Video ### 
+[http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y](http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y) 
+> `/id/X1xSV0Y` can be replaced by `id/14345`  
+
+[http://nhacso.net/video/parse?listIds=14345](http://nhacso.net/video/parse?listIds=14345)  
+
+[http://nhacso.net/video/numbersub?listIds=14502%2C14506](http://nhacso.net/video/numbersub?listIds=14502%2C14506)  
+
+> Get Subtitles 
+
+[http://nhacso.net/statistic/videostatistic?listIds=14449](http://nhacso.net/statistic/videostatistic?listIds=14449)  
+
+> Get `videostatistic`  
+
+MISC:  
+[http://nhacso.net/video/statisticview](http://nhacso.net/video/statisticview)  
+> Request Method: `POST` , form data: `id:14449` <= increase song plays. Use cURL command `curl -XPOST http://nhacso.net/video/statisticview -d  "id=14449"`  
+
+[http://nhacso.net/producer/getproducer](http://nhacso.net/producer/getproducer)  
+> Request Method: `POST` , form data: `listIds:10` <= get procedure. Use cURL command `curl -XPOST http://nhacso.net/producer/getproducer  -d "listIds=10"`  
+
+
+### Album ###
+[http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe](http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe)  
+
+> Use on the last parameter only  
+
+[http://nhacso.net/album/parse?listIds=17000](http://nhacso.net/album/parse?listIds=17000)  
+
+[http://nhacso.net/album/getstatistic?listIds=543996,543700,543565,542242](http://nhacso.net/album/getstatistic?listIds=543996,543700,543565,542242)  
+
+> Get album list stats  `543996,543700,543565,542242` are albumIds
+
+[http://nhacso.net/statistic/albumtotallisten?listIds=543700](http://nhacso.net/statistic/albumtotallisten?listIds=543700)  
+
+> Get `albumtotallisten`  
+
+[http://nhacso.net/album/getstatistic?listIds=6884](http://nhacso.net/album/getstatistic?listIds=6884)  
+
+> `getstatistic` of an album  
+
+[http://nhacso.net/statistic/albumtotallisten?listIds=543700](http://nhacso.net/statistic/albumtotallisten?listIds=543700)  
+
+> Get `albumtotallisten` <= aggregation of included songs
+
+[http://nhacso.net/album/gettotalsong?listIds=533138%2C535960](http://nhacso.net/album/gettotalsong?listIds=533138%2C535960)  
+
+> `gettotalsong` of an album  
+
+[http://nhacso.net/album/getdescandissuetime?listIds=543996,543700,543565,542242](http://nhacso.net/album/getdescandissuetime?listIds=543996,543700,543565,542242)  
+
+> `getdescandissuetime`: get description and issued moment  
+
+[http://nhacso.net/album/getissuetime?listIds=447529,321676,310104,310102](http://nhacso.net/album/getissuetime?listIds=447529,321676,310104,310102)  
+
+> `getissuetime`
+
+*DEFAULT ALBUMS*:   
+[http://st.nhacso.net/images/album/thumb_album_120x120.jpg](http://st.nhacso.net/images/album/thumb_album_120x120.jpg)  
+
+### MISC ###
+**Get Category**
 	
-	> `listIds`means you can pass parameters with the following pattern : `para1,para2,para3`  
-	
-	[http://nhacso.net/artist/parse?listIds=5092,186,131,47,2088,2130,80,2407,17,55](http://nhacso.net/artist/parse?listIds=5092,186,131,47,2088,2130,80,2407,17,55)  
-	> Get similar songs w.r.t. `song_id` X1pUUkFdaA , `5092,186,131,47,2088,2130,80,2407,17,55`are `artistId`
+[http://nhacso.net/category/getcategory?listIds=1,2,4,5](http://nhacso.net/category/getcategory?listIds=1,2,4,5)  
+> `getcategory` <= get list
 
-	[http://nhacso.net/statistic/songlike?listIds=1251227](http://nhacso.net/statistic/songlike?listIds=1251227)  
-	> Get `songlike`  
+**Get Lyric**
+[http://nhacso.net/song/lyric?song_id=1100539](http://nhacso.net/song/lyric?song_id=1100539)
 
-	[http://nhacso.net/statistic/songtotallisten?listIds=1260796,1260795](http://nhacso.net/statistic/songtotallisten?listIds=1260796,1260795)  
+**Lastest Songs:**
+[http://nhacso.net/top/latestsong?xnl=1](http://nhacso.net/top/latestsong?xnl=1)
 
-	> Get `songtotallisten` ; `1260796,1260795`are songIds  
+**Get Parse Amount Album:**
+[http://nhacso.net/artist/parseamountalbum?listIds=54 ](http://nhacso.net/artist/parseamountalbum?listIds=54 )
 
-	[http://nhacso.net/statistic/songstatistic?listIds=1260796,1260795](http://nhacso.net/statistic/songstatistic?listIds=1260796,1260795)  
+**Get Parse Amount Song of Artist**  
+[http://nhacso.net/artist/parseamountsong?listIds=54](http://nhacso.net/artist/parseamountsong?listIds=54)
 
-	> Get `songstatistic`; `1260796,1260795` are songIds  
-
-	> View page source to get the structure. XML Format
-* Video:  
-	[http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y](http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y) 
-	> `/id/X1xSV0Y` can be replaced by `id/14345`  
-
-	[http://nhacso.net/video/parse?listIds=14345](http://nhacso.net/video/parse?listIds=14345)  
-	
-	[http://nhacso.net/video/numbersub?listIds=14502%2C14506](http://nhacso.net/video/numbersub?listIds=14502%2C14506)  
-
-	> Get Subtitles 
-
-	[http://nhacso.net/statistic/videostatistic?listIds=14449](http://nhacso.net/statistic/videostatistic?listIds=14449)  
-
-	> Get `videostatistic`  
-
-	MISC:  
-	[http://nhacso.net/video/statisticview](http://nhacso.net/video/statisticview)  
-	> Request Method: `POST` , form data: `id:14449` <= increase song plays. Use cURL command `curl -XPOST http://nhacso.net/video/statisticview -d  "id=14449"`  
-
-	[http://nhacso.net/producer/getproducer](http://nhacso.net/producer/getproducer)  
-	> Request Method: `POST` , form data: `listIds:10` <= get procedure. Use cURL command `curl -XPOST http://nhacso.net/producer/getproducer  -d "listIds=10"`  
-
-
-* Album:  
-	[http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe](http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe)  
-
-	> Use on the last parameter only  
-
-	[http://nhacso.net/album/parse?listIds=17000](http://nhacso.net/album/parse?listIds=17000)  
-
-	[http://nhacso.net/album/getstatistic?listIds=543996,543700,543565,542242](http://nhacso.net/album/getstatistic?listIds=543996,543700,543565,542242)  
-	
-	> Get album list stats  `543996,543700,543565,542242` are albumIds
-
-	[http://nhacso.net/statistic/albumtotallisten?listIds=543700](http://nhacso.net/statistic/albumtotallisten?listIds=543700)  
-
-	> Get `albumtotallisten`  
-
-	[http://nhacso.net/album/getstatistic?listIds=6884](http://nhacso.net/album/getstatistic?listIds=6884)  
-
-	> `getstatistic` of an album  
-
-	[http://nhacso.net/statistic/albumtotallisten?listIds=543700](http://nhacso.net/statistic/albumtotallisten?listIds=543700)  
-
-	> Get `albumtotallisten` <= aggregation of included songs
-
-	[http://nhacso.net/album/gettotalsong?listIds=533138%2C535960](http://nhacso.net/album/gettotalsong?listIds=533138%2C535960)  
-
-	> `gettotalsong` of an album  
-
-	[http://nhacso.net/album/getdescandissuetime?listIds=543996,543700,543565,542242](http://nhacso.net/album/getdescandissuetime?listIds=543996,543700,543565,542242)  
-
-	> `getdescandissuetime`: get description and issued moment  
-
-	[http://nhacso.net/album/getissuetime?listIds=447529,321676,310104,310102](http://nhacso.net/album/getissuetime?listIds=447529,321676,310104,310102)  
-
-	> `getissuetime`
-
-	*DEFAULT ALBUMS*:   
-	[http://st.nhacso.net/images/album/thumb_album_120x120.jpg](http://st.nhacso.net/images/album/thumb_album_120x120.jpg)  
-
-
-* Get Category 
-	
-	[http://nhacso.net/category/getcategory?listIds=1,2,4,5](http://nhacso.net/category/getcategory?listIds=1,2,4,5)  
-	> `getcategory` <= get list
-
-* Get Lyric  
-	[http://nhacso.net/song/lyric?song_id=934343](http://nhacso.net/song/lyric?song_id=934343)
-
-* Lastest Songs:  
-	[http://nhacso.net/top/latestsong?xnl=1](http://nhacso.net/top/latestsong?xnl=1)
-
-* Get Parse Amount Album:  
-	[http://nhacso.net/artist/parseamountalbum?listIds=54 ](http://nhacso.net/artist/parseamountalbum?listIds=54 )
-
-* Get Parse Amount Song of Artist  
-	[http://nhacso.net/artist/parseamountsong?listIds=54](http://nhacso.net/artist/parseamountsong?listIds=54)
-
-* Get Artist  
-	[http://nhacso.net/artist/parseamountsong?listIds=54](http://nhacso.net/artist/parseamountsong?listIds=54)  
-	[http://nhacso.net/artist/desc?listIds=54](http://nhacso.net/artist/desc?listIds=54)  
-	[http://nhacso.net/artist/parse?listIds=311](http://nhacso.net/artist/parse?listIds=311)  
-* Get Suggestion  
-	[http://nhacso.net/artist/parsesuggest?listIds=54](http://nhacso.net/artist/parsesuggest?listIds=54)
-* Get issued time  
-	[http://nhacso.net/album/getdescandissuetime?listIds=347553](http://nhacso.net/album/getdescandissuetime?listIds=347553)
+**Get Artist**
+[http://nhacso.net/artist/parseamountsong?listIds=54](http://nhacso.net/artist/parseamountsong?listIds=54)  
+[http://nhacso.net/artist/desc?listIds=54](http://nhacso.net/artist/desc?listIds=54)  
+[http://nhacso.net/artist/parse?listIds=311](http://nhacso.net/artist/parse?listIds=311)  
+**Get Suggestion**
+[http://nhacso.net/artist/parsesuggest?listIds=54](http://nhacso.net/artist/parsesuggest?listIds=54)
+**Get issued time** 
+[http://nhacso.net/album/getdescandissuetime?listIds=347553](http://nhacso.net/album/getdescandissuetime?listIds=347553)
 
 *UPDATE:* Get song_id from 1 to 1.261.000 on January 11, 2012. On Jan 08, scan 541148 albums, filter and insert 165465 albums into database
 *Stats:* 977721 songs on Jan 11; ~14016 videos ~500000 abums
 
-* MICS : Check these links again  
-	[http://nhacso.net/song/getobjectsong?id=945455](http://nhacso.net/song/getobjectsong?id=945455)  
-	[http://nhacso.net/video/getobjectvideo?id=14300](http://nhacso.net/video/getobjectvideo?id=14300)  
-	> `type=POST` <= check in server script. Functions `getObjectVideo()`and `getObjectSong()`  
+*MICS :* Check these links again
 
-	[http://nhacso.net/song/listen](http://nhacso.net/song/listen)  
+[http://nhacso.net/song/getobjectsong?id=945455](http://nhacso.net/song/getobjectsong?id=945455)  
+[http://nhacso.net/video/getobjectvideo?id=14300](http://nhacso.net/video/getobjectvideo?id=14300)  
+> `type=POST` <= check in server script. Functions `getObjectVideo()`and `getObjectSong()`  
 
-	> Request Method: `POST` , form data: `id:1142573` <= increase song plays. Use cURL command `curl -XPOST http://nhacso.net/song/listen -d  "id=1260645"`
+[http://nhacso.net/song/listen](http://nhacso.net/song/listen)  
+
+> Request Method: `POST` , form data: `id:1142573` <= increase song plays. Use cURL command `curl -XPOST http://nhacso.net/song/listen -d  "id=1260645"`
 
 ---
 
