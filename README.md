@@ -49,7 +49,7 @@ curl  https://id.fpt.net/\?display\=iframe -v
 ```
 *USING `grep` and `sed`*  
 ```
-curl -s https://id.fpt.net/\?display\=iframe -i | grep -i -E "FPTID\=[0-9a-zA-Z]+|id\=\"hash\" value\=\"" | sed -e 's/Set\\-Cookie\: //' -e 's/\; path=\///' -e 's/\<input type\=\"hidden\" name\=\"hash\" id\=\"hash\" value\=\"//' -e 's/\" \/\>//'
+curl -s https://id.fpt.net/\?display\=iframe -i | grep -i -E "FPTID\=[0-9a-zA-Z]+|id\=\"hash\" value\=\"" | sed -e 's/Set\\-Cookie\: //' -e 's/\; path=\///' -e 's/\                    <input type\=\"hidden\" name\=\"hash\" id\=\"hash\" value\=\"//' -e 's/\" \/\>//'
 ```
 **Get cookie** `Auth`  
 ```bash
