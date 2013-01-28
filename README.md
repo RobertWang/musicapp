@@ -1,5 +1,6 @@
 #DOCUMENTATION#
 
+:lantern: 
 
 # CLI Installation #
 
