@@ -1,6 +1,5 @@
 #DOCUMENTATION#
 
-:lantern: 
 
 # CLI Installation #
 
@@ -72,6 +71,7 @@ Remember to use cookie. EX: `Auth=V0JAaVlcZkNEXlwAECkcCzVFAgNVAhwuXgtnBwdbAkkEPF
 Auto login  
 [http://nhacso.net/sso.php?id=1240090058&value=2&action=login&sid=V0JAb1ldb0NGV1wWQzIZUDtEQFoAAh81Bg1oRRBbFhwfLAMQag%3D%3D](http://nhacso.net/sso.php?id=1240090058&value=2&action=login&sid=V0JAb1ldb0NGV1wWQzIZUDtEQFoAAh81Bg1oRRBbFhwfLAMQag%3D%3D)  
 Insert proper `Auth`  
+`id=1240090058` is not necessary. ONLY use session ID `Auth` to log into your acccount! BAM! Security LEAK!
 
 ###Song###
 [http://nhacso.net/flash/song/xnl/1/id/XVxUVURX](http://nhacso.net/flash/song/xnl/1/id/XVxUVURX)  
@@ -302,6 +302,20 @@ Updated on December 12, 2012
 	~5000 albums  
 
 ---
+
+## Chiasenhac.com##
+* Get song  
+	[http://playlist.chiasenhac.com/nghe-album/your-link~1061516.html](http://playlist.chiasenhac.com/nghe-album/your-link~1061516.html)
+	> crawl .html to get the value "decodeURIComponent" => `http://data.chiasenhac.com/downloads/1026/3/1025225-5bdcd546/320/Noi%20Tinh%20Yeu%20Bat%20Dau%20-%20Bang%20Kieu_%20Lam%20An.mp3`
+	Get quality 320kps,128kps or 32kps `quality.php?q=320&redirect=mp3/vietnam/v-pop/your-link~1025225.html`
+
+---
+
+### Music.yeucahat.com ###
+* Get song
+	[http://music.yeucahat.com/mp3/vietnamese/91432-your-link.html](http://music.yeucahat.com/mp3/vietnamese/91432-your-link.html)  
+	> crawl .html to get the value "decodeURIComponent"  => `http://data.yeucahat.com/downloads/92/3/06fea2c2b85d7c0e57eea7efe46d608e/Ng…n%20Long%20Phung%20Xum%20Vay%20-%20Khoi%20My_%20%28www.YeuCaHat.com%29.mp3`
+
 
 ## Store.zing.vn ##
 
