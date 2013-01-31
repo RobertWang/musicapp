@@ -11,7 +11,7 @@ Using nodejs
 
 # Introduction #
 
-## Nhacso.net ##
+## 1.Nhacso.net ##
 
 Their link's ids are encrypted in simple ways. They can be cracked by utilizing this func
 
@@ -35,7 +35,7 @@ decodeId = (songId) ->
 EX: `song_id` : **345678** will become **XVxUVURX**
 
 
-### Get links automatically###
+### a.Get links automatically###
 
 We can grasp data with these links  
 
@@ -65,20 +65,21 @@ curl -s https://id.fpt.net/\?display\=iframe -d "hash=a9785186138d519050ea35a178
 ```bash
 curl "http://nhacso.net/download-nhac/link-tu-tao/=.1250000.html" -o sample.mp3 -b Auth=V0JAaVlcZkNEXlwAECkcCzVFAgNVAhwuXgtnBwdbAkkEPF1UbQ
 ```
-Remember to use cookie. EX: `Auth=V0JAaVlcZkNEXlwAECkcCzVFAgNVAhwuXgtnBwdbAkkEPF1UbQ`. 
+Remember the cookie `Auth=V0JAaVlcZkNEXlwAECkcCzVFAgNVAhwuXgtnBwdbAkkEPF1UbQ` is valid in 24h
 
 **BONUS**  
 Auto login  
-[http://nhacso.net/sso.php?id=1240090058&value=2&action=login&sid=V0JAb1ldb0NGV1wWQzIZUDtEQFoAAh81Bg1oRRBbFhwfLAMQag%3D%3D](http://nhacso.net/sso.php?id=1240090058&value=2&action=login&sid=V0JAb1ldb0NGV1wWQzIZUDtEQFoAAh81Bg1oRRBbFhwfLAMQag%3D%3D)  
-Insert proper `Auth`  
-`id=1240090058` is not necessary. ONLY use session ID `Auth` to log into your acccount! BAM! Security LEAK!
+```bash
+http://nhacso.net/sso.php?id=1240090058&value=2&action=login&sid=V0JAb1ldb0NGV1wWQzIZUDtEQFoAAh81Bg1oRRBbFhwfLAMQag%3D%3D
+```
+Insert user-generated valid `Auth` .`id=1240090058` in the link above is not necessary. ONLY use session ID `Auth` to log into your acccount! BAM! Security LEAK!
 
-###Song###
+###b.Song###
 [http://nhacso.net/flash/song/xnl/1/id/XVxUVURX](http://nhacso.net/flash/song/xnl/1/id/XVxUVURX)  
   
 
 
-[http://nhacso.net/song/parse?listIds=1250000](http://nhacso.net/song/parse?listIds=1250000)  
+[http://nhacso.net/song/parse?listIds=1250000](http://nhacso.net/song/parse?list$Ids=1250000)  
 
 > `listIds`means you can pass parameters with the following pattern : `para1,para2,para3`  
 
@@ -98,7 +99,7 @@ Insert proper `Auth`
 
 > View page source to get the structure. XML Format  
 
-###Video###
+###c.Video###
 [http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y](http://nhacso.net/flash/video/xnl/1/id/X1xSV0Y) 
 > `/id/X1xSV0Y` can be replaced by `id/14345`  
 
@@ -120,7 +121,7 @@ MISC:
 > Request Method: `POST` , form data: `listIds:10` <= get procedure. Use cURL command `curl -XPOST http://nhacso.net/producer/getproducer  -d "listIds=10"`  
 
 
-###Album###
+###d.Album###
 [http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe](http://nhacso.net/flash/album/xnl/1/uid/X1lWW0NabwIBAw==,W1pZWkVe)  
 
 > Use on the last parameter only  
@@ -158,7 +159,7 @@ MISC:
 *DEFAULT ALBUMS*:   
 [http://st.nhacso.net/images/album/thumb_album_120x120.jpg](http://st.nhacso.net/images/album/thumb_album_120x120.jpg)  
 
-###MISC###
+###e.Misc###
 **Get Category**
 	
 [http://nhacso.net/category/getcategory?listIds=1,2,4,5](http://nhacso.net/category/getcategory?listIds=1,2,4,5)  
@@ -200,7 +201,7 @@ MISC:
 
 ---
 
-## Music.go.vn##
+## 2.Music.go.vn##
 
 [http://music.go.vn/Ajax/RenderXmlHandler.ashx?sid=47278](http://music.go.vn/Ajax/RenderXmlHandler.ashx?sid=47278)
 
@@ -227,7 +228,7 @@ Updated on December 12, 2012
 
 ---
 
-## Hcm.nhac.vui.vn ##
+## 3.Hcm.nhac.vui.vn ##
 
 * Get Song  
 	[http://hcm.nhac.vui.vn/asx2.php?type=1&id=299321](http://hcm.nhac.vui.vn/asx2.php?type=1&id=299321)  
@@ -243,7 +244,7 @@ Updated on December 12, 2012
 
 ---
 
-##Chacha.vn##
+## 4.Chacha.vn##
 * Get Song  
 	[http://www.chacha.vn/song/play/420343](http://www.chacha.vn/song/play/420343)  
 	`song/play` <= insert `song_id`  
@@ -258,21 +259,23 @@ Updated on December 12, 2012
 
 --- 
 
-##Nghenhac.info ##
-* Get Album
-	[http://nghenhac.info/Farm/PlayAlbumJson.ashx?p=7BB61600815BA707](http://nghenhac.info/Farm/PlayAlbumJson.ashx?p=7BB61600815BA707)  
-	note complete
+## 5.Nghenhac.info ##
+* Get Album  
+[http://nghenhac.info/Album/joke-link/20697/.html](http://nghenhac.info/Album/joke-link/20697/.html)  
+[http://nghenhac.info/Farm/PlayAlbumJson.ashx?p=7BB61600815BA707](http://nghenhac.info/Farm/PlayAlbumJson.ashx?p=7BB61600815BA707)  
+not complete
 
 ---
 
-##Vietgiaitri.com ##
-* Get Album
-	[http://img.vietgiaitri.com/music.php?act=xml&sm=a593b5ed00bd1442bc6741cab4bdda2b&time=1357584049&uid=0&gid=2&aid=6899&repeat=always](http://img.vietgiaitri.com/music.php?act=xml&sm=a593b5ed00bd1442bc6741cab4bdda2b&time=1357584049&uid=0&gid=2&aid=6899&repeat=always)  
-	`aid=` <= insert number  
+##6.Vietgiaitri.com ##
+* Get Album  
+[http://nhac.vietgiaitri.com/album-nhac/-4471.vgt](http://nhac.vietgiaitri.com/album-nhac/-4471.vgt)  
+[http://img.vietgiaitri.com/music.php?act=xml&sm=a593b5ed00bd1442bc6741cab4bdda2b&time=1357584049&uid=0&gid=2&aid=6899&repeat=always](http://img.vietgiaitri.com/music.php?act=xml&sm=a593b5ed00bd1442bc6741cab4bdda2b&time=1357584049&uid=0&gid=2&aid=6899&repeat=always)  
+	`aid=` <= insert number, temporary link
 
 ---
 
-## Nhac.hay365.com ##
+## 7.Nhac.hay365.com ##
 * Get Song  
 	[http://static.hay365.com/song_43151.xml](http://static.hay365.com/song_43151.xml)  
 
@@ -282,42 +285,87 @@ Updated on December 12, 2012
 
 ---
 
-## Music.vnn.vn##
+## 8.Music.vnn.vn##
 * Get Album  
-	[http://music.vnn.vn//XML/Album/2013/1/album-huong-lan-mo-lai-vang-trang20130108020942.xml](http://music.vnn.vn//XML/Album/2013/1/album-huong-lan-mo-lai-vang-trang20130108020942.xml)  
+[http://music.vnn.vn/vdco/albums/p/48.htm](http://music.vnn.vn/vdco/albums/p/48.htm)  
+[http://music.vnn.vn/album/5380/.htm](http://music.vnn.vn/album/5380/.htm)  
+[http://music.vnn.vn//XML/Album/2013/1/album-huong-lan-mo-lai-vang-trang20130108020942.xml](http://music.vnn.vn//XML/Album/2013/1/album-huong-lan-mo-lai-vang-trang20130108020942.xml)  
 	not complete  
 
 ---
 
-## Nghenhacmoi.net##
+## 9.Nghenhacmoi.net##
 * Get Album  
 	[http://nghenhacmoi.net/music/xml/3/701.xml](http://nghenhacmoi.net/music/xml/3/701.xml)  
 	Note: just thousands of songs, ~700 albums 
 
 ---
 
-## Nhacvang.net ##
+## 10.Nhacvang.net ##
 * Get Album  
 	[http://nghenhacvang.net/playplaylist/5725.xml](http://nghenhacvang.net/playplaylist/5725.xml)  
 	~5000 albums  
 
 ---
 
-## Chiasenhac.com##
-* Get song  
-	[http://playlist.chiasenhac.com/nghe-album/your-link~1061516.html](http://playlist.chiasenhac.com/nghe-album/your-link~1061516.html)
-	> crawl .html to get the value "decodeURIComponent" => `http://data.chiasenhac.com/downloads/1026/3/1025225-5bdcd546/320/Noi%20Tinh%20Yeu%20Bat%20Dau%20-%20Bang%20Kieu_%20Lam%20An.mp3`
-	Get quality 320kps,128kps or 32kps `quality.php?q=320&redirect=mp3/vietnam/v-pop/your-link~1025225.html`
+## 11.Chiasenhac.com##
+**Get song**  
+[http://playlist.chiasenhac.com/nghe-album/your-link~1061516.html](http://playlist.chiasenhac.com/nghe-album/your-link~1061516.html)
+Crawl .html to get the value "decodeURIComponent"
+```bash
+http://data.chiasenhac.com/downloads/1026/3/1025225-5bdcd546/320/Noi%20Tinh%20Yeu%20Bat%20Dau%20-%20Bang%20Kieu_%20Lam%20An.mp3
+```
+Get quality 320kps,128kps or 32kps `quality.php?q=320&redirect=mp3/vietnam/v-pop/your-link~1025225.html`
+
+## 12.Music.yeucahat.com ##
+**Get album**
+[http://music.yeucahat.com/mp3/vietnamese/91432-your-link.html](http://music.yeucahat.com/mp3/vietnamese/91432-your-link.html)  
+
+Crawl .html to get the value "decodeURIComponent" 
+```bash
+http://data.yeucahat.com/downloads/92/3/06fea2c2b85d7c0e57eea7efe46d608e/Ng…n%20Long%20Phung%20Xum%20Vay%20-%20Khoi%20My_%20%28www.YeuCaHat.com%29.mp3
+```
 
 ---
 
-### Music.yeucahat.com ###
-* Get song
-	[http://music.yeucahat.com/mp3/vietnamese/91432-your-link.html](http://music.yeucahat.com/mp3/vietnamese/91432-your-link.html)  
-	> crawl .html to get the value "decodeURIComponent"  => `http://data.yeucahat.com/downloads/92/3/06fea2c2b85d7c0e57eea7efe46d608e/Ng…n%20Long%20Phung%20Xum%20Vay%20-%20Khoi%20My_%20%28www.YeuCaHat.com%29.mp3`
+## 13.Keeng.vn ##
+* Get album
+	[http://www.keeng.vn/album/album-moi.html?page=160](http://www.keeng.vn/album/album-moi.html?page=160)
+	> crawl page. CURRENT max page is 791 to get AlbumId  
+	[http://www.keeng.vn/album/get-album-xml?album_identify=2673C7B2](http://www.keeng.vn/album/get-album-xml?album_identify=2673C7B2)
 
+---
 
-## Store.zing.vn ##
+## 14.Mp3.zing.vn ##
+* Using search (not recommended)
+[http://mp3.zing.vn/suggest/search?term=toi](http://mp3.zing.vn/suggest/search?term=toi)
+> `term` is artist or song in database
+
+* Scan whole albums in artist profile
+> [http://mp3.zing.vn/nghe-si/Dam-Vinh-Hung/album](http://mp3.zing.vn/nghe-si/Dam-Vinh-Hung/album)  
+
+**Procedure when getting album encryted links**  
+*Step 1:* Get album-xml: 
+```bash
+http://mp3.zing.vn/xml/album-xml/LHxnyLGNVJkxubJTLvctbmLG
+```
+*Step 2:* Get static, constant links. For instance:
+```bash
+http://mp3.zing.vn/xml/load-song/MjAxMyUyRjAxJTJGMDQlMkY2JTJGOSUyRjY5OWMxNDFjODgyZTBmMWVjODNkMmE2Yjk1MmUyMjQwLm1wMyU3QzI=
+```  
+> It'll redirect to a new temporary location
+
+*Step 3:* Get temp link (being expired in 6h)
+```bash
+http://stream2.hot2.cache11.vcdn.vn/fsfsdfdsfdserwrwq3/3b9e3d4f06d2df09cc8da402c00ae49e/5108fcdc/2013/01/04/6/9/699c141c882e0f1ec83d2a6b952e2240.mp3
+```
+Notice link like this
+```bash
+http://stream2.hot2.cache11.vcdn.vn/fsfsdfdsfdserwrwq3/4ce95480fb0b141aba6d059d0591fa3c/5108a15e/2013/01/04/6/9/699c141c882e0f1ec83d2a6b952e2240.mp3
+```
+only available in 6hours due to the consistency between `4ce95480fb0b141aba6d059d0591fa3c` and `5108a15e` (timestamp)
+
+## 15.Store.zing.vn ##
 
 ```coffeescript
 ONES = ['A','E','I','M','Q','U','Y','c','g','k']
@@ -330,7 +378,15 @@ HUNDREDSOFTHOUSANDS = ['','MC0x','MC0y','MC0z','MC00','MC01','MC02','MC03','MC04
 * Get Song  
 	[http://store.zing.vn/mediaxml?mediaId=MC02MzU2MDc=](http://store.zing.vn/mediaxml?mediaId=MC02MzU2MDc=)  
 	`mediaId=MC02MzU2MDc=` <=> `mediaId=735607=` . Notice the equal sign  
+
 ---
+
+## 16.Nhaccuatui.com ##
+* Scan artist profile
+link gonna expire in 12h
+---
+
+
 
 # FETCH ALL ALBUMS FROM NHASO.NET WITH NODE.JS
 
