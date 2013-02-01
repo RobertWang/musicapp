@@ -261,6 +261,8 @@ Updated on December 12, 2012
 	`s0`,`s1`,`s2`,`s3`,`s4`,`s5` are sizes.   
 	`0 => original`, `1 => 640x640px`, `2 => 320x320`, `3 => 150x150`, `4 => 100x100`, `5 => 50x50`
 
+*STATS:* ~313875 songs, ~ albums on Jan 31
+
 --- 
 
 ## 5.Nghenhac.info ##
