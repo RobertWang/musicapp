@@ -174,20 +174,21 @@ MISC:
 **Get Parse Amount Album:**
 [http://nhacso.net/artist/parseamountalbum?listIds=54 ](http://nhacso.net/artist/parseamountalbum?listIds=54 )
 
-**Get Parse Amount Song of Artist**  
+**Get Parse Amount Song of Artist**
 [http://nhacso.net/artist/parseamountsong?listIds=54](http://nhacso.net/artist/parseamountsong?listIds=54)
 
-**Get Artist**
+**Get Artist**  
 [http://nhacso.net/artist/parseamountsong?listIds=54](http://nhacso.net/artist/parseamountsong?listIds=54)  
 [http://nhacso.net/artist/desc?listIds=54](http://nhacso.net/artist/desc?listIds=54)  
 [http://nhacso.net/artist/parse?listIds=311](http://nhacso.net/artist/parse?listIds=311)  
 **Get Suggestion**
-[http://nhacso.net/artist/parsesuggest?listIds=54](http://nhacso.net/artist/parsesuggest?listIds=54)
+[http://nhacso.net/artist/parsesuggest?listIds=54](http://nhacso.net/artist/parsesuggest?listIds=54)  
 **Get issued time** 
 [http://nhacso.net/album/getdescandissuetime?listIds=347553](http://nhacso.net/album/getdescandissuetime?listIds=347553)
 
-*UPDATE:* Get song_id from 1 to 1.261.000 on January 11, 2012. On Jan 08, scan 541148 albums, filter and insert 165465 albums into database
-*Stats:* 977721 songs on Jan 11; ~14016 videos ~500000 abums
+*STATS:* Get song_id from 1 to 1.261.000 on Jan 11, 2012.   
+On Jan 08, scan 541148 albums, filter and insert 165465 albums into database  
+On Jan 11, scan 977721 songs; ~14016 videos ~500000 abums
 
 *MICS :* Check these links again
 
@@ -240,7 +241,7 @@ Updated on December 12, 2012
 	[http://hcm.nhac.vui.vn/asx2.php?type=3&id=24000](http://hcm.nhac.vui.vn/asx2.php?type=3&id=24000)  
 	`type=3` => album  
 
-*STATS:* ~300995 songs, ~25160 albums
+*STATS:* ~278652 songs, ~23009 albums on Jan 27
 
 ---
 
@@ -255,8 +256,10 @@ Updated on December 12, 2012
 	NOTE: `http://s2.chacha.vn/artists//s5/309/309.jpg?v=0` <= look at property `thumb` to get  artist id  
 * Get Thumbnail  
 	[http://s2.chacha.vn/albums//s3/7223/7223.jpg?v=0](http://s2.chacha.vn/albums//s3/7223/7223.jpg?v=0)  
-	Note: get thumbnail from albums  
-
+	[http://s2.chacha.vn/artists/s2/15/130088/130088.jpg](http://s2.chacha.vn/artists/s2/15/130088/130088.jpg)   
+	*Note:* get thumbnail from albums or artists  
+	`s0`,`s1`,`s2`,`s3`,`s4`,`s5` are sizes.   
+	`0 => original`, `1 => 640x640px`, `2 => 320x320`, `3 => 150x150`, `4 => 100x100`, `5 => 50x50`
 --- 
 
 ## 5.Nghenhac.info ##
@@ -309,18 +312,17 @@ not complete
 ---
 
 ## 11.Chiasenhac.com##
-**Get song**  
-[http://playlist.chiasenhac.com/nghe-album/your-link~1061516.html](http://playlist.chiasenhac.com/nghe-album/your-link~1061516.html)
+**Get song**
+[http://playlist.chiasenhac.com/nghe-album/your-link~1061516.html](http://playlist.chiasenhac.com/nghe-album/your-link~1061516.html)  
 Crawl .html to get the value "decodeURIComponent"
 ```bash
 http://data.chiasenhac.com/downloads/1026/3/1025225-5bdcd546/320/Noi%20Tinh%20Yeu%20Bat%20Dau%20-%20Bang%20Kieu_%20Lam%20An.mp3
 ```
-Get quality 320kps,128kps or 32kps `quality.php?q=320&redirect=mp3/vietnam/v-pop/your-link~1025225.html`
+Get quality `320kps`,`128kps` or `32kps` `quality.php?q=320&redirect=mp3/vietnam/v-pop/your-link~1025225.html`
 
 ## 12.Music.yeucahat.com ##
 **Get album**
-[http://music.yeucahat.com/mp3/vietnamese/91432-your-link.html](http://music.yeucahat.com/mp3/vietnamese/91432-your-link.html)  
-
+[http://music.yeucahat.com/mp3/vietnamese/91432-your-link.html](http://music.yeucahat.com/mp3/vietnamese/91432-your-link.html)   
 Crawl .html to get the value "decodeURIComponent" 
 ```bash
 http://data.yeucahat.com/downloads/92/3/06fea2c2b85d7c0e57eea7efe46d608e/Ng…n%20Long%20Phung%20Xum%20Vay%20-%20Khoi%20My_%20%28www.YeuCaHat.com%29.mp3
@@ -331,8 +333,12 @@ http://data.yeucahat.com/downloads/92/3/06fea2c2b85d7c0e57eea7efe46d608e/Ng…n%
 ## 13.Keeng.vn ##
 * Get album
 	[http://www.keeng.vn/album/album-moi.html?page=160](http://www.keeng.vn/album/album-moi.html?page=160)
-	> crawl page. CURRENT max page is 791 to get AlbumId  
-	[http://www.keeng.vn/album/get-album-xml?album_identify=2673C7B2](http://www.keeng.vn/album/get-album-xml?album_identify=2673C7B2)
+	> crawl page. CURRENT max page is 792 to get AlbumId  
+	[http://www.keeng.vn/album/get-album-xml?album_identify=2673C7B2](http://www.keeng.vn/album/get-album-xml?album_identify=2673C7B2)    
+	Notice: crawl from page 1..792 ordered by album-moi, started with album `Hit K-Pop Tháng 1/2013` on Jan 31  
+
+*STATS:* get 17721 albums, ~130922 songs
+
 
 ---
 
