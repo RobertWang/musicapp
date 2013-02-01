@@ -258,8 +258,8 @@ Updated on December 12, 2012
 	[http://s2.chacha.vn/albums//s3/7223/7223.jpg?v=0](http://s2.chacha.vn/albums//s3/7223/7223.jpg?v=0)  
 	[http://s2.chacha.vn/artists/s2/15/130088/130088.jpg](http://s2.chacha.vn/artists/s2/15/130088/130088.jpg)   
 	*Note:* get thumbnail from albums or artists  
-	`s0`,`s1`,`s2`,`s3`,`s4`,`s5` are sizes.   
-	`0 => original`, `1 => 640x640px`, `2 => 320x320`, `3 => 150x150`, `4 => 100x100`, `5 => 50x50`
+`s0`,`s1`,`s2`,`s3`,`s4`,`s5` are sizes.   
+`0 => original`, `1 => 640x640px`, `2 => 320x320`, `3 => 150x150`, `4 => 100x100`, `5 => 50x50`
 --- 
 
 ## 5.Nghenhac.info ##
