@@ -16,20 +16,18 @@ Using nodejs
 Their link's ids are encrypted in simple ways. They can be cracked by utilizing this func
 
 ```coffeescript
-decodeId = (songId) ->
-	arr = Array::slice.call songId.toString()
-	arr = arr.map (value) -> parseInt(value)
-	a = []
-	songid = ""
-	a[1] = ['bw','bg','bQ','bA','aw','ag','aQ','aA','Zw','Zg']
-	a[2] = ['f','e','d','c','b','a','Z','Y','X','W']
-	a[3] = ['N','J','F','B','d','Z','V','R','t','p']
-	a[4] = ['U0','Uk','UU','UE','V0','Vk','VU','VE','W0','Wk']
-	a[5] = ['R','Q','T','S','V','U','X','W','Z','Y']
-	a[6] = ['h','l','p','t','x','1','5','9','B','F']
-	a[7] = ['','X1','XF','XV','Wl','W1','WF','WV','Vl','V1']
-	songid += a[7-i+1][arr[i-1]] for i in [1..arr.length]
-	songid
+decode = (id) ->
+	s = id.toString()
+	a = ['bw bg bQ bA aw ag aQ aA Zw Zg'.split(' '),
+	 	 'fedcbaZYXW'.split(''),
+	 	 'NJFBdZVRtp'.split(''),
+	 	 'U0 Uk UU UE V0 Vk VU VE W0 Wk'.split(' '),
+	 	 'RQTSVUXWZY'.split(''),
+	 	 'hlptx159BF'.split(''),
+	 	 ' X1 XF XV Wl W1 WF WV Vl V1'.split(' ')]
+	result = ""
+	result += a[6-i][s.charAt(i)] for i in [0..s.length-1]
+	result
 ```
 
 EX: `song_id` : **345678** will become **XVxUVURX**
@@ -241,7 +239,7 @@ Updated on December 12, 2012
 	[http://hcm.nhac.vui.vn/asx2.php?type=3&id=24000](http://hcm.nhac.vui.vn/asx2.php?type=3&id=24000)  
 	`type=3` => album  
 
-*STATS:* ~278652 songs, ~23009 albums on Jan 27
+*STATS:* ~279772 songs, ~24100 albums on Feb 02
 
 ---
 
@@ -261,7 +259,7 @@ Updated on December 12, 2012
 	`s0`,`s1`,`s2`,`s3`,`s4`,`s5` are sizes.   
 	`0 => original`, `1 => 640x640px`, `2 => 320x320`, `3 => 150x150`, `4 => 100x100`, `5 => 50x50`
 
-*STATS:* ~313875 songs, ~ albums on Jan 31
+*STATS:* ~313875 songs, ~ 4396 albums on Jan 31
 
 --- 
 
@@ -269,7 +267,11 @@ Updated on December 12, 2012
 * Get Album  
 [http://nghenhac.info/Album/joke-link/20697/.html](http://nghenhac.info/Album/joke-link/20697/.html)  
 [http://nghenhac.info/Farm/PlayAlbumJson.ashx?p=7BB61600815BA707](http://nghenhac.info/Farm/PlayAlbumJson.ashx?p=7BB61600815BA707)  
+
+XML-Format : [http://nghenhac.info/Farm/PlayAlbum.aspx?p=0DD9A357E02601E1](http://nghenhac.info/Farm/PlayAlbum.aspx?p=0DD9A357E02601E1)  
 not complete
+
+*STATS:* ~193285 songs, ~16084 albums on Feb 04
 
 ---
 
@@ -340,7 +342,7 @@ http://data.yeucahat.com/downloads/92/3/06fea2c2b85d7c0e57eea7efe46d608e/Ng…n%
 	[http://www.keeng.vn/album/get-album-xml?album_identify=2673C7B2](http://www.keeng.vn/album/get-album-xml?album_identify=2673C7B2)    
 	Notice: crawl from page 1..792 ordered by album-moi, started with album `Hit K-Pop Tháng 1/2013` on Jan 31  
 
-*STATS:* get 17721 albums, ~130922 songs
+*STATS:* get ~17721 albums, ~132052 songs on Feb 7
 
 
 ---
@@ -372,7 +374,17 @@ Notice link like this
 ```bash
 http://stream2.hot2.cache11.vcdn.vn/fsfsdfdsfdserwrwq3/4ce95480fb0b141aba6d059d0591fa3c/5108a15e/2013/01/04/6/9/699c141c882e0f1ec83d2a6b952e2240.mp3
 ```
-only available in 6hours due to the consistency between `4ce95480fb0b141aba6d059d0591fa3c` and `5108a15e` (timestamp)
+only available in 6hours due to the consistency between the hash `4ce95480fb0b141aba6d059d0591fa3c` and the timestamp `5108a15e` => `timestamping`
+
+* Get video
+```bash
+http://channelz.mp3.zdn.vn/zv/0da2d1cd79cb1ed7e303c032c86fd20b/5111e350/file_uploads/video/2010/9/23/3/8/38a4b0133afa3796f3f4d443d6f88c72.mp4
+```
+This link will be regenerated in every 6h.  
+At first, the webserver will rewrite the URL to new location `http://channelz.org.mp3.zdn.vn/....` .   
+Secondly, it actually loads balancing among the hosts: `http://channelz1.org.mp3.zdn.vn/...` where subdomain `channelz1` is in `[1,2,7,8,9]`
+
+*STATS* ~421984 songs, ~42677 albums, ~10695 artists, ~29366 videos on Feb 7
 
 ## 15.Store.zing.vn ##
 
