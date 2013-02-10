@@ -405,6 +405,26 @@ HUNDREDSOFTHOUSANDS = ['','MC0x','MC0y','MC0z','MC00','MC01','MC02','MC03','MC04
 ## 16.Nhaccuatui.com ##
 * Scan artist profile
 link gonna expire in 12h
+
+Check duplicated albums in database. EX: albumid `I1umglqa8dMM` has 2 performers. Check it out and correct later!
+
+* Get Album
+[http://www.nhaccuatui.com/flash/xml?key2=7ab190e6723074e9de3eb1389724facc](http://www.nhaccuatui.com/flash/xml?key2=7ab190e6723074e9de3eb1389724facc)   
+*Get albums' plays* 
+[http://www.nhaccuatui.com/wg/get-counter?listPlaylistIds=10779538,10582398](http://www.nhaccuatui.com/wg/get-counter?listPlaylistIds=10779538,10582398)  
+
+* Get Song
+[http://www.nhaccuatui.com/flash/xml?key1=8e95adfc88e89bd150b6e7ac780e4039](http://www.nhaccuatui.com/flash/xml?key1=8e95adfc88e89bd150b6e7ac780e4039)  
+*Get songs' plays* 
+[http://www.nhaccuatui.com/wg/get-counter?listSongIds=](http://www.nhaccuatui.com/wg/get-counter?listSongIds=10779538,10582398)  
+
+* Thumbnail  
+[http://p.img.nct.nixcdn.com/playlist/2012/12/20/0XehgKp67tZ5.jpg](http://p.img.nct.nixcdn.com/playlist/2012/12/20/0XehgKp67tZ5.jpg)  
+[http://avatar.nct.nixcdn.com/playlist/2012/12/20/0XehgKp67tZ5.jpg](http://avatar.nct.nixcdn.com/playlist/2012/12/20/0XehgKp67tZ5.jpg)  
+=> Same file, same host => `ip=123.30.134.21`    
+
+*STATS* ~251797 songs, ~26853 albums, ~ 21057+119647 videos on feb 10
+
 ---
 
 
