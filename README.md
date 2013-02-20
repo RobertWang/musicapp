@@ -188,6 +188,8 @@ MISC:
 On Jan 08, scan 541148 albums, filter and insert 165465 albums into database  
 On Jan 11, scan 977721 songs; ~14016 videos ~500000 abums
 
+**NOTE** they use `||` as a delimiter `Lê Minh Trung ||Như Ý`  
+
 *MICS :* Check these links again
 
 [http://nhacso.net/song/getobjectsong?id=945455](http://nhacso.net/song/getobjectsong?id=945455)  
@@ -376,6 +378,13 @@ http://stream2.hot2.cache11.vcdn.vn/fsfsdfdsfdserwrwq3/4ce95480fb0b141aba6d059d0
 ```
 only available in 6hours due to the consistency between the hash `4ce95480fb0b141aba6d059d0591fa3c` and the timestamp `5108a15e` => `timestamping`
 
+* Get album  
+[http://mp3.zing.vn/xml/album-xml/LGxnyLnsVcbZDdbtLvJyvGLG](http://mp3.zing.vn/xml/album-xml/LGxnyLnsVcbZDdbtLvJyvGLG)  
+[http://m.mp3.zing.vn/xml/album/LGxnyLnsVcbZDdbtLvJyvGLG](http://m.mp3.zing.vn/xml/album/LGxnyLnsVcbZDdbtLvJyvGLG)  
+
+* Get song  
+[http://mp3.zing.vn/xml/load-song/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=](http://mp3.zing.vn/xml/load-song/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=)  
+[http://m.mp3.zing.vn/xml/song-load/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=](http://m.mp3.zing.vn/xml/song-load/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=)  
 * Get video
 ```bash
 http://channelz.mp3.zdn.vn/zv/0da2d1cd79cb1ed7e303c032c86fd20b/5111e350/file_uploads/video/2010/9/23/3/8/38a4b0133afa3796f3f4d443d6f88c72.mp4
@@ -383,6 +392,19 @@ http://channelz.mp3.zdn.vn/zv/0da2d1cd79cb1ed7e303c032c86fd20b/5111e350/file_upl
 This link will be regenerated in every 6h.  
 At first, the webserver will rewrite the URL to new location `http://channelz.org.mp3.zdn.vn/....` .   
 Secondly, it actually loads balancing among the hosts: `http://channelz1.org.mp3.zdn.vn/...` where subdomain `channelz1` is in `[1,2,7,8,9]`
+
+* Get full thumbnail  
+[http://image.mp3.zdn.vn/thumb/165_165/covers/6/e/6e47d27c9f2f2caecedae2c64b934cda_1289472556.jpg](http://image.mp3.zdn.vn/thumb/165_165/covers/6/e/6e47d27c9f2f2caecedae2c64b934cda_1289472556.jpg)  
+=> remove the `thumb/165_165` to get the full URL
+
+* Get lyrics  
+[http://mp3.zing.vn/ajax/lyrics/lyrics?from=0&id=ZW6OFZ70&callback=zmCore.js270375](http://mp3.zing.vn/ajax/lyrics/lyrics?from=0&id=ZW6OFZ70&callback=zmCore.js270375)  
+=> JSONP. Remove callback func to get JSON `http://mp3.zing.vn/ajax/lyrics/lyrics?from=0&id=ZW6OFZ70&callback=`  
+=> param `from=0` means lyric version  
+```bash
+x.html.replace(/\r|\n|\t/g,'').replace(/<div\sclass\=\"iLyric\">.+/g,'').replace(/^.+<\/span><\/span>/g,'').replace(/<\/div>/g,'')  
+```
+**Notice** lyric has supported many verions  
 
 *STATS* ~421984 songs, ~42677 albums, ~10695 artists, ~29366 videos on Feb 7
 
@@ -413,6 +435,8 @@ Check duplicated albums in database. EX: albumid `I1umglqa8dMM` has 2 performers
 *Get albums' plays* 
 [http://www.nhaccuatui.com/wg/get-counter?listPlaylistIds=10779538,10582398](http://www.nhaccuatui.com/wg/get-counter?listPlaylistIds=10779538,10582398)  
 
+**ALBUMS** means both videos and songs
+
 * Get Song
 [http://www.nhaccuatui.com/flash/xml?key1=8e95adfc88e89bd150b6e7ac780e4039](http://www.nhaccuatui.com/flash/xml?key1=8e95adfc88e89bd150b6e7ac780e4039)  
 *Get songs' plays* 
@@ -425,8 +449,96 @@ Check duplicated albums in database. EX: albumid `I1umglqa8dMM` has 2 performers
 
 *STATS* ~251797 songs, ~26853 albums, ~ 21057+119647 videos on feb 10
 
+* Checking the hidden values: `inpHiddenSongKey`, `inpHiddenId`, `inpHiddenType`, `inpHiddenGenre`, `inpHiddenSingerIds`, `inpLyricId`  in every song, album or music video  
+
 ---
 
+## 17.iCine.vn ##
+
+* Get mp4 movie
+
+```bash
+rtmpdump -r "rtmpe://118.69.196.80:1935/VoD/cot-moc-23\850.mp4" -W "http://icine.vn/jwplayer/player1.swf" -p "http://icine.vn/a/watch-movie?movieId=2954" -o film.mp4
+```
+```bash
+rtmpdump -r "rtmpe://118.69.196.80:1935/VoD/cot-moc-23\850.mp4" -o film.mp4
+```
+
+* Get files:  
+[http://icine.vn/a/watch-movie?movieId=3387](http://icine.vn/a/watch-movie?movieId=3387)  
+1. view source => `iCinePlayer("MCwwLGZsaWdodCwzMzg3LDEsLTEsLTEsMCwy");`  
+2. decode `Base64.decode('MCwwLGZsaWdodCwzMzg3LDEsLTEsLTEsMCwy')`   
+3. get the file name from `"0,0,flight,3387,1,-1,-1,0,2"`   
+4. play the file using the rmtpe [http://icine.vn/jwplayer/playlist/flight-vip.xml](http://icine.vn/jwplayer/playlist/flight-vip.xml)  
+5. or to get ordinary file [http://icine.vn/jwplayer/playlist/flight.xml](http://icine.vn/jwplayer/playlist/flight.xml)  
+6. get sub [http://icine.vn/jwplayer/sub/flight-vn.srt](http://icine.vn/jwplayer/sub/flight-vn.srt). Note: suffix `-en.srt` and `-vn.srt`  
+7. check the `crossdomain.xml`
+
+---
+
+## 18.Movies.hdviet.vn ##
+
+* Get files  
+
+1. Decrypt files using RC4 func  
+2. Get source : [http://movies.hdviet.com/2498.xml?lucdebug=true](http://movies.hdviet.com/2498.xml?lucdebug=true). `2498` is movieid  
+3. If the para `lucdebug=true` is disable then decrypt the file whose password is `HDVN@T@oanL@c`  
+4. Decrypt the `m3u8` file using `hdviet123#@!` EX:
+[http://ncs06.vn-hd.com/02022013/Deadwood_S02/E001/playlist_1280.m3u8](http://ncs06.vn-hd.com/02022013/Deadwood_S02/E001/playlist_1280.m3u8)  
+```bash
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=700000,CODECS="avc1.66.30,mp4a.40.2",RESOLUTION=480x270
+480.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1000000,CODECS="avc1.66.30,mp4a.40.2",RESOLUTION=640x360
+640.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1500000,CODECS="avc1.77.31,mp4a.40.2",RESOLUTION=800x450
+800.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2000000,CODECS="avc1.77.31,mp4a.40.2",RESOLUTION=1024x576
+1024.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2700000,CODECS="avc1.100.41,mp4a.40.2",RESOLUTION=1280x720
+1280.m3u8
+```
+5. Decrypt the files at different resolutions. Ex:  
+[http://ncs06.vn-hd.com/02022013/Deadwood_S02/E001/1280.m3u8](http://ncs06.vn-hd.com/02022013/Deadwood_S02/E001/1280.m3u8)  
+```bash
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOWCACHE:1
+#EXTINF:7.841167,
+1280/Deadwood_S02_E001_1280_0.ts
+#EXTINF:5.922589,
+1280/Deadwood_S02_E001_1280_1.ts
+#EXTINF:5.880878,
+1280/Deadwood_S02_E001_1280_2.ts
+#EXTINF:5.880878,
+1280/Deadwood_S02_E001_1280_3.ts
+.................................
+#EXTINF:5.485667,
+1280/Deadwood_S02_E001_1280_489.ts
+#EXT-X-TARGETDURATION:8
+#EXT-X-ENDLIST
+```
+6. Change the relative urls to absolute ones.   EX `1280/Deadwood_S02_E001_1280_0.ts` to 
+```bash
+http://ncs06.vn-hd.com/02022013/Deadwood_S02/E001/1280/Deadwood_S02_E001_1280_0.ts
+```
+7. play `m3u8` file  
+
+---
+
+## 19.iphone.uphim.vn ##
+
+* Get files
+1. use user-agent to fool the server  
+```bash
+curl "http://iphone.uphim.vn/xem-phim-joke-link-m-2323-p-1.html" --user-agent "Mozilla/5.0 (iPhone; U; CPU iPhone"
+```
+2. get `eval(function(p,a,c,k,e,d){...}` in the script and decode the `dean edwards packer`  
+3. get `m3u8` file
+
+---
 
 
 # FETCH ALL ALBUMS FROM NHASO.NET WITH NODE.JS
