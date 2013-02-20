@@ -476,7 +476,7 @@ rtmpdump -r "rtmpe://118.69.196.80:1935/VoD/cot-moc-23\850.mp4" -o film.mp4
 
 ---
 
-## 18.Movies.hdviet.vn ##
+## 18.Movies.hdviet.com ##
 
 * Get files  
 
@@ -528,7 +528,8 @@ rtmpdump -r "rtmpe://118.69.196.80:1935/VoD/cot-moc-23\850.mp4" -o film.mp4
 ```bash
 http://ncs06.vn-hd.com/02022013/Deadwood_S02/E001/1280/Deadwood_S02_E001_1280_0.ts
 ```  
-7.Play `m3u8` file  
+7.Play `m3u8` file   
+8.Decode VNese subtiltes using the pass `6e28cec025af4ff790c8337d5190184e`   
 
 ---
 
