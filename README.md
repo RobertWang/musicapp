@@ -541,6 +541,10 @@ http://ncs06.vn-hd.com/02022013/Deadwood_S02/E001/1280/Deadwood_S02_E001_1280_0.
 ```bash
 curl "http://iphone.uphim.vn/xem-phim-joke-link-m-2323-p-1.html" --user-agent "Mozilla/5.0 (iPhone; U; CPU iPhone"
 ```  
+```bash
+curl "http://iphone.uphim.vn/xem-phim-joke-link-m-311-p-1.html" --user-agent "Mozilla/5.0 (iPhone; U; CPU iPhone" --cookie "OAID=db6333b40159517a1a4fbaac928396ab; x_sessionid=fb835813c3b2224da2ea56ebda6ab7ac;"
+```  
+
 2. get `eval(function(p,a,c,k,e,d){...}` in the script and decode the `dean edwards packer`  
 3. get `m3u8` file
 
