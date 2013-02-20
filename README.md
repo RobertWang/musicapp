@@ -466,13 +466,13 @@ rtmpdump -r "rtmpe://118.69.196.80:1935/VoD/cot-moc-23\850.mp4" -o film.mp4
 
 * Get files:  
 [http://icine.vn/a/watch-movie?movieId=3387](http://icine.vn/a/watch-movie?movieId=3387)  
-1. view source => `iCinePlayer("MCwwLGZsaWdodCwzMzg3LDEsLTEsLTEsMCwy");`  
-2. decode `Base64.decode('MCwwLGZsaWdodCwzMzg3LDEsLTEsLTEsMCwy')`   
-3. get the file name from `"0,0,flight,3387,1,-1,-1,0,2"`   
-4. play the file using the rmtpe [http://icine.vn/jwplayer/playlist/flight-vip.xml](http://icine.vn/jwplayer/playlist/flight-vip.xml)  
-5. or to get ordinary file [http://icine.vn/jwplayer/playlist/flight.xml](http://icine.vn/jwplayer/playlist/flight.xml)  
-6. get sub [http://icine.vn/jwplayer/sub/flight-vn.srt](http://icine.vn/jwplayer/sub/flight-vn.srt). Note: suffix `-en.srt` and `-vn.srt`  
-7. check the `crossdomain.xml`
+1.view source => `iCinePlayer("MCwwLGZsaWdodCwzMzg3LDEsLTEsLTEsMCwy");`  
+2.decode `Base64.decode('MCwwLGZsaWdodCwzMzg3LDEsLTEsLTEsMCwy')`   
+3.get the file name from `"0,0,flight,3387,1,-1,-1,0,2"`   
+4.play the file using the rmtpe [http://icine.vn/jwplayer/playlist/flight-vip.xml](http://icine.vn/jwplayer/playlist/flight-vip.xml)  
+5.or to get ordinary file [http://icine.vn/jwplayer/playlist/flight.xml](http://icine.vn/jwplayer/playlist/flight.xml)  
+6.get sub [http://icine.vn/jwplayer/sub/flight-vn.srt](http://icine.vn/jwplayer/sub/flight-vn.srt). Note: suffix `-en.srt` and `-vn.srt`  
+7.check the `crossdomain.xml`
 
 ---
 
@@ -480,61 +480,67 @@ rtmpdump -r "rtmpe://118.69.196.80:1935/VoD/cot-moc-23\850.mp4" -o film.mp4
 
 * Get files  
 
-1. Decrypt files using RC4 func  
-2. Get source : [http://movies.hdviet.com/2498.xml?lucdebug=true](http://movies.hdviet.com/2498.xml?lucdebug=true). `2498` is movieid  
-3. If the para `lucdebug=true` is disable then decrypt the file whose password is `HDVN@T@oanL@c`  
-4. Decrypt the `m3u8` file using `hdviet123#@!` EX:
+1.Decrypt files using RC4 func  
+2.Get source : [http://movies.hdviet.com/2498.xml?lucdebug=true](http://movies.hdviet.com/2498.xml?lucdebug=true). `2498` is movieid  
+3.If the para `lucdebug=true` is disable then decrypt the file whose password is `HDVN@T@oanL@c`  
+4.Decrypt the `m3u8` file using `hdviet123#@!` EX:
 [http://ncs06.vn-hd.com/02022013/Deadwood_S02/E001/playlist_1280.m3u8](http://ncs06.vn-hd.com/02022013/Deadwood_S02/E001/playlist_1280.m3u8)
-```  
-	#EXTM3U
-	#EXT-X-VERSION:3
-	#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=700000,CODECS="avc1.66.30,mp4a.40.2",RESOLUTION=480x270
-	480.m3u8
-	#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1000000,CODECS="avc1.66.30,mp4a.40.2",RESOLUTION=640x360
-	640.m3u8
-	#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1500000,CODECS="avc1.77.31,mp4a.40.2",RESOLUTION=800x450
-	800.m3u8
-	#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2000000,CODECS="avc1.77.31,mp4a.40.2",RESOLUTION=1024x576
-	1024.m3u8
-	#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2700000,CODECS="avc1.100.41,mp4a.40.2",RESOLUTION=1280x720
-	1280.m3u8
-```
-5. Decrypt the files at different resolutions. Ex:  
+
+```bash
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=700000,CODECS="avc1.66.30,mp4a.40.2",RESOLUTION=480x270
+480.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1000000,CODECS="avc1.66.30,mp4a.40.2",RESOLUTION=640x360
+640.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1500000,CODECS="avc1.77.31,mp4a.40.2",RESOLUTION=800x450
+800.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2000000,CODECS="avc1.77.31,mp4a.40.2",RESOLUTION=1024x576
+1024.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=2700000,CODECS="avc1.100.41,mp4a.40.2",RESOLUTION=1280x720
+1280.m3u8
+```    
+
+5.Decrypt the files at different resolutions. Ex:  
 [http://ncs06.vn-hd.com/02022013/Deadwood_S02/E001/1280.m3u8](http://ncs06.vn-hd.com/02022013/Deadwood_S02/E001/1280.m3u8)
-```  
-	#EXTM3U
-	#EXT-X-VERSION:3
-	#EXT-X-MEDIA-SEQUENCE:0
-	#EXT-X-ALLOWCACHE:1
-	#EXTINF:7.841167,
-	1280/Deadwood_S02_E001_1280_0.ts
-	#EXTINF:5.922589,
-	1280/Deadwood_S02_E001_1280_1.ts
-	#EXTINF:5.880878,
-	1280/Deadwood_S02_E001_1280_2.ts
-	#EXTINF:5.880878,
-	1280/Deadwood_S02_E001_1280_3.ts
-	.................................
-	#EXTINF:5.485667,
-	1280/Deadwood_S02_E001_1280_489.ts
-	#EXT-X-TARGETDURATION:8
-	#EXT-X-ENDLIST
+
+```bash
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-ALLOWCACHE:1
+#EXTINF:7.841167,
+1280/Deadwood_S02_E001_1280_0.ts
+#EXTINF:5.922589,
+1280/Deadwood_S02_E001_1280_1.ts
+#EXTINF:5.880878,
+1280/Deadwood_S02_E001_1280_2.ts
+#EXTINF:5.880878,
+1280/Deadwood_S02_E001_1280_3.ts
+.................................
+#EXTINF:5.485667,
+1280/Deadwood_S02_E001_1280_489.ts
+#EXT-X-TARGETDURATION:8
+#EXT-X-ENDLIST
 ```
-6. Change the relative urls to absolute ones.   EX `1280/Deadwood_S02_E001_1280_0.ts` to
-```
+6.Change the relative urls to absolute ones.   EX `1280/Deadwood_S02_E001_1280_0.ts` to
+
+```bash
 http://ncs06.vn-hd.com/02022013/Deadwood_S02/E001/1280/Deadwood_S02_E001_1280_0.ts
-```
-7. play `m3u8` file  
+```  
+7.Play `m3u8` file  
 
 ---
 
 ## 19.iphone.uphim.vn ##
 
 * Get files
-1. use user-agent to fool the server  
+
+1.use user-agent to fool the server  
+
 ```bash
 curl "http://iphone.uphim.vn/xem-phim-joke-link-m-2323-p-1.html" --user-agent "Mozilla/5.0 (iPhone; U; CPU iPhone"
-```
+```  
 2. get `eval(function(p,a,c,k,e,d){...}` in the script and decode the `dean edwards packer`  
 3. get `m3u8` file
 
