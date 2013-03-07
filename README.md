@@ -343,6 +343,8 @@ http://data.yeucahat.com/downloads/92/3/06fea2c2b85d7c0e57eea7efe46d608e/Ng…n%
 	> crawl page. CURRENT max page is 792 to get AlbumId  
 	[http://www.keeng.vn/album/get-album-xml?album_identify=2673C7B2](http://www.keeng.vn/album/get-album-xml?album_identify=2673C7B2)    
 	Notice: crawl from page 1..792 ordered by album-moi, started with album `Hit K-Pop Tháng 1/2013` on Jan 31  
+* Get Video
+	about 20k videos
 
 *STATS:* get ~17721 albums, ~132052 songs on Feb 7
 
@@ -350,6 +352,16 @@ http://data.yeucahat.com/downloads/92/3/06fea2c2b85d7c0e57eea7efe46d608e/Ng…n%
 ---
 
 ## 14.Mp3.zing.vn ##
+
+* Decode id
+
+```coffeescript
+convertToInt = (id)->
+	a = "0IWOUZ6789ABCDEF".split('')
+	b = "0123456789ABCDEF"
+	parseInt id.split('').map((v)-> b[a.indexOf(v)]).join(''), 16
+```
+
 * Using search (not recommended)
 [http://mp3.zing.vn/suggest/search?term=toi](http://mp3.zing.vn/suggest/search?term=toi)
 > `term` is artist or song in database
@@ -385,7 +397,9 @@ only available in 6hours due to the consistency between the hash `4ce95480fb0b14
 * Get song  
 [http://mp3.zing.vn/xml/load-song/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=](http://mp3.zing.vn/xml/load-song/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=)  
 [http://m.mp3.zing.vn/xml/song-load/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=](http://m.mp3.zing.vn/xml/song-load/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=)  
-* Get video
+* Get video  
+[http://mp3.zing.vn/xml/video-xml/kGJmykGaBaavclGykbcybmLn](http://mp3.zing.vn/xml/video-xml/kGJmykGaBaavclGykbcybmLn)  
+
 ```bash
 http://channelz.mp3.zdn.vn/zv/0da2d1cd79cb1ed7e303c032c86fd20b/5111e350/file_uploads/video/2010/9/23/3/8/38a4b0133afa3796f3f4d443d6f88c72.mp4
 ```
@@ -447,9 +461,15 @@ Check duplicated albums in database. EX: albumid `I1umglqa8dMM` has 2 performers
 [http://avatar.nct.nixcdn.com/playlist/2012/12/20/0XehgKp67tZ5.jpg](http://avatar.nct.nixcdn.com/playlist/2012/12/20/0XehgKp67tZ5.jpg)  
 => Same file, same host => `ip=123.30.134.21`    
 
+* Get Lyrics  
+[http://www.nhaccuatui.com/ajax/get-lyric?key=2414745](http://www.nhaccuatui.com/ajax/get-lyric?key=2414745)  
+
+
 *STATS* ~251797 songs, ~26853 albums, ~ 21057+119647 videos on feb 10
 
 * Checking the hidden values: `inpHiddenSongKey`, `inpHiddenId`, `inpHiddenType`, `inpHiddenGenre`, `inpHiddenSingerIds`, `inpLyricId`  in every song, album or music video  
+
+**Notice: the pair (songid,albumid) gonna be duplicated while updating new albums. Be careful when use it**
 
 ---
 
@@ -528,6 +548,7 @@ rtmpdump -r "rtmpe://118.69.196.80:1935/VoD/cot-moc-23\850.mp4" -o film.mp4
 ```bash
 http://ncs06.vn-hd.com/02022013/Deadwood_S02/E001/1280/Deadwood_S02_E001_1280_0.ts
 ```  
+**Note** `http://ncs01.vn-hd.com/` server'll load balances between `ncs01.vn-hd.com`...`ncs09.vn-hd.com`  
 7.Play `m3u8` file   
 8.Decode VNese subtiltes using the pass `6e28cec025af4ff790c8337d5190184e`   
 
