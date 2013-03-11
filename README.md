@@ -353,7 +353,9 @@ http://data.yeucahat.com/downloads/92/3/06fea2c2b85d7c0e57eea7efe46d608e/Ng…n%
 
 ## 14.Mp3.zing.vn ##
 
-* Decode id
+### Decode id ###
+
+Turn `ZW6W7IUO` into `1382183235`  
 
 ```coffeescript
 convertToInt = (id)->
@@ -362,7 +364,10 @@ convertToInt = (id)->
 	parseInt id.split('').map((v)-> b[a.indexOf(v)]).join(''), 16
 ```
 
-### Analysizing the hash `ZGJGTknazzupuzaTZDJTDGLG` ####
+### Analyzing encrypted id ####
+
+The format is `ZGJGTknazzupuzaTZDJTDGLG`  
+
 1.Create matrix Mx24 : M album items & 24-character string  
 
 ```coffeescript
@@ -447,6 +452,7 @@ encryptId = (id) ->
 		"ZGJGT" + (id-307843200).toString().split('').map((v)-> a[v]).join('') + "TZDJTDGLG"
 ```
 
+### Brutal Search ###
 
 * Using search (not recommended)
 [http://mp3.zing.vn/suggest/search?term=toi](http://mp3.zing.vn/suggest/search?term=toi)
@@ -455,7 +461,8 @@ encryptId = (id) ->
 * Scan whole albums in artist profile
 > [http://mp3.zing.vn/nghe-si/Dam-Vinh-Hung/album](http://mp3.zing.vn/nghe-si/Dam-Vinh-Hung/album)  
 
-**Procedure when getting album encryted links**  
+### Procedure when getting album encryted links###
+
 *Step 1:* Get album-xml: 
 ```bash
 http://mp3.zing.vn/xml/album-xml/LHxnyLGNVJkxubJTLvctbmLG
@@ -476,17 +483,19 @@ http://stream2.hot2.cache11.vcdn.vn/fsfsdfdsfdserwrwq3/4ce95480fb0b141aba6d059d0
 ```
 only available in 6hours due to the consistency between the hash `4ce95480fb0b141aba6d059d0591fa3c` and the timestamp `5108a15e` => `timestamping`
 
-* Get album  
+### Get resources ###
+
+#### Get album   ####
 [http://mp3.zing.vn/xml/album-xml/LGxnyLnsVcbZDdbtLvJyvGLG](http://mp3.zing.vn/xml/album-xml/LGxnyLnsVcbZDdbtLvJyvGLG)  
 [http://m.mp3.zing.vn/xml/album/LGxnyLnsVcbZDdbtLvJyvGLG](http://m.mp3.zing.vn/xml/album/LGxnyLnsVcbZDdbtLvJyvGLG)  
 
-* Get song  
+#### Get song  ####
 [http://m.mp3.zing.vn/xml/song/ZGJGTknazzupuzaTZDJTDGLG](http://m.mp3.zing.vn/xml/song/ZGJGTknazzupuzaTZDJTDGLG)  
 [http://mp3.zing.vn/download/song/Chi-Con-Lai-Tinh-Yeu-Bui-Anh-Tuan/ZGJGyLGNldSnHdptLDcyvmLn](http://mp3.zing.vn/download/song/Chi-Con-Lai-Tinh-Yeu-Bui-Anh-Tuan/ZGJGyLGNldSnHdptLDcyvmLn)  
 ==>> the encrypted links  
 [http://mp3.zing.vn/xml/load-song/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=](http://mp3.zing.vn/xml/load-song/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=)  
 [http://m.mp3.zing.vn/xml/song-load/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=](http://m.mp3.zing.vn/xml/song-load/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=)  
-* Get video  
+#### Get video  ####
 [http://mp3.zing.vn/xml/video-xml/kGJmykGaBaavclGykbcybmLn](http://mp3.zing.vn/xml/video-xml/kGJmykGaBaavclGykbcybmLn)  
 [http://mp3.zing.vn/html5/video/ZGJmykHslWmJsmZySJmybGZm](http://mp3.zing.vn/html5/video/ZGJmykHslWmJsmZySJmybGZm)  
 ```bash
@@ -496,20 +505,25 @@ This link will be regenerated in every 6h.
 At first, the webserver will rewrite the URL to new location `http://channelz.org.mp3.zdn.vn/....` .   
 Secondly, it actually loads balancing among the hosts: `http://channelz1.org.mp3.zdn.vn/...` where subdomain `channelz1` is in `[1,2,7,8,9]`
 
-* Get full thumbnail  
+#### Get full thumbnail  ####
 [http://image.mp3.zdn.vn/thumb/165_165/covers/6/e/6e47d27c9f2f2caecedae2c64b934cda_1289472556.jpg](http://image.mp3.zdn.vn/thumb/165_165/covers/6/e/6e47d27c9f2f2caecedae2c64b934cda_1289472556.jpg)  
 => remove the `thumb/165_165` to get the full URL
 
-* Get lyrics  
+#### Get lyrics  ####
 [http://mp3.zing.vn/ajax/lyrics/lyrics?from=0&id=ZW6OFZ70&callback=zmCore.js270375](http://mp3.zing.vn/ajax/lyrics/lyrics?from=0&id=ZW6OFZ70&callback=zmCore.js270375)  
 => JSONP. Remove callback func to get JSON `http://mp3.zing.vn/ajax/lyrics/lyrics?from=0&id=ZW6OFZ70&callback=`  
 => param `from=0` means lyric version  
 ```bash
 x.html.replace(/\r|\n|\t/g,'').replace(/<div\sclass\=\"iLyric\">.+/g,'').replace(/^.+<\/span><\/span>/g,'').replace(/<\/div>/g,'')  
 ```
-**Notice** lyric has supported many verions  
 
-*STATS* ~421984 songs, ~42677 albums, ~10695 artists, ~29366 videos on Feb 7
+### Notice ###
+
+Lyric has supported many verions  
+
+### Statistics ###
+
+~421984 songs, ~42677 albums, ~10695 artists, ~29366 videos on Feb 7
 
 ## 15.Store.zing.vn ##
 
