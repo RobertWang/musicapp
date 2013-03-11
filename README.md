@@ -362,8 +362,9 @@ convertToInt = (id)->
 	parseInt id.split('').map((v)-> b[a.indexOf(v)]).join(''), 16
 ```
 
-* Analysizing the hash `ZGJGTknazzupuzaTZDJTDGLG`  
+### Analysizing the hash `ZGJGTknazzupuzaTZDJTDGLG` ####
 1. Create matrix Mx24 : M album items & 24-character string  
+
 ```coffeescript
 1381585029 => "LHJnyknNBNALJbuTLbxTDmkH"
 1381585030 => "LGxGTLHadNALJVHykFcTFnLn"
