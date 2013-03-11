@@ -26,7 +26,7 @@ decode = (id) ->
 	 	 'hlptx159BF'.split(''),
 	 	 ' X1 XF XV Wl W1 WF WV Vl V1'.split(' ')]
 	result = ""
-	result += a[6-i][s.charAt(i)] for i in [0..s.length-1]
+	result += a[6-i][s[i]] for i in [0..s.length-1]
 	result
 ```
 
@@ -362,6 +362,86 @@ convertToInt = (id)->
 	parseInt id.split('').map((v)-> b[a.indexOf(v)]).join(''), 16
 ```
 
+* Analysizing the hash `ZGJGTknazzupuzaTZDJTDGLG`  
+1. Create matrix Mx24 : M album items & 24-character string  
+```coffeescript
+1381585029 => "LHJnyknNBNALJbuTLbxTDmkH"
+1381585030 => "LGxGTLHadNALJVHykFcTFnLn"
+........................................
+1381585043 => "knJHyLGNdNAkJSdtLDJtFnZG"
+1381585044 => "ZncGyLnsBaSkJAltZbctFGkm"
+```
+2. Invert the matrix and find the repeated characters in each row. The more M rows are fetched, the more precise they are. Tested with ~70000 albums EX: a inversed matrix of 50x24 gonna be  
+```coffeescript
+LLkZZZkLLLLLkZLZLkZLkLLZZkLLLkkkLZLLLkZLZZkZLZLZZL:0 => "LZk"
+HGHnnHmmHGnHnnnHGmHGmmnnmGHnHHmHmmHGmHnGHmmmGmGGmG:1 => "GHmn"
+JxxJxcJccJcJJcccJJJJxJJxccJcJJJJJcxxcccxJJxJJxxcJx:2 => "Jcx"
+nGGnnmnmmGGnHGnGmmGmmmHHmGmHHnHHHmHmmmnnnGGGHmHmHG:3 => "GHmn"
+yTyyttTtttyyyyyyytyytTyyTtyttyytytTyytyTTyytTyyTtT:4 => "Tty"
+kLkLLZkLLkZLLLkLLkLkkLLkLZLLkLZZkLLLLkLZkZLkkZLLLL:5 => "LZk"
+nHHHnnnGHmmmGnGGHGnHHHnnGnmGmmHnmHGGHHnnmHnmmHHmnG:6 => "GHmn"
+NaNsaNsaNNaNNsNNNNNsNaNNNsNNsaaaNNNaNNNsNsNaaNasaN:7 => "Nas"
+BdVdVddVVdBddBdVVBBBVBdBBddVdVVddBdddVddBdBVdddVdd:8 => "BVd"
+NNssNNsNsNNNNaNaNaNsNsNNNNsasNaNNsaaNasNsaNNasaNaN:9 => "Nas"
+AAzzAzSzlSSSASAllSSSAAASzlSSASzzlSzlAASSSAAlSzSzlz:10 => "ASlz"
+LLkZLLZLLLkkkkZZZLLLkZkkZLLkkkLLLLLLLLLZZLkZkZLkZk:11 => "LZk"
+JJcxccJxJxxxJJxJxJJccxcxxJcJxcxcxJcxxxJcJJcJJcJcJx:12 => "Jcx"
+bVBVdVddBVdzSAASllzWQpQWWWppghXhhXgCasNaaNaNscxxJc:13 => "ABCJNQSVWXabcdghlpsxz"
+uHZbBlQXNJuLdlpXaJiGZDdSpgsxHkvdSQNinLDdQgNJRGLDdp:14 => "BDGHJLNQRSXZabdgiklnpsuvx"
+TyTyyyyytyTyttytytyyyyyttTTytyTtTyyTTtyTtyyytTyyyT:15 => "Tty"
+LkZLkLZkLLLLLZLkkLLZLLZLLZLLLLLLLLLkkkLLZkkLZZLkLk:16 => "LZk"
+bFFFDFbDFFbvDbFFbDbbFDvbvDvFvDvbDFDDDDDvbDbDFDvFFb:17 => "DFbv"
+xccJcJxJJcxxJcJcJJJcxJJxJJJJJcJJccJcJccccxJJxcxJJx:18 => "Jcx"
+TTytyytyTyyyttTTttttyyyTTyyyyyTyyyytTyTyTytyTTTtyy:19 => "Tty"
+DFDFFDbDDFDFFFvDDDDbDDDvbFbbbDvbDDFbDbvvFvFFDFbbDD:20 => "DFbv"
+mnmHmnnmGnGGnGnnGmHmGmnnHnnHmGmGGnmnmHHGmnGGmHmHnG:21 => "GHmn"
+kLLLLkkLLZLLZkkZLLkLLLLLZZLkZZLZZLZLLLLZZkkLZZLZLZ:22 => "LZk"
+HnnGnHnnnHnHGmmHmnnHGHmmnnmmmmmHHnHmnHGHmGmGmHHHmm:23 => "GHmn"
+```
+3. It's showed that each single character in the group `LZk` represents a same symbol (number or character or whatever). There are 11 groups : `GHmn`, `LZk`, `DFbv`, `BVd`, `ASlz`, `QWp`, `ghXC`, `Nas`, `Jcx`, `ERui` and `Tty`. Try with different number of albums. We will see the patterns at position 15,14,13... tend to vary in size as we increase the number of albums in ascendant order. EX: result of 50000x24 matrix  
+```bash
+0 => "LZk"
+1 => "GHmn"
+2 => "Jcx"
+3 => "GHmn"
+4 => "Tty"
+5 => "LZk"
+6 => "GHmn"
+7 => "Nas"
+8 => "BVd"
+9 => "Nas"
+10 => "ACEJNQRSWXacghilpsuxz"
+11 => "ABCDEFGHJLNQRSVWXZabcdghiklmnpsuvxz"
+12 => "ABCDEFGHJLNQRSVWXZabcdghiklmnpsuvxz"
+13 => "ABCDEFGHJLNQRSVWXZabcdghiklmnpsuvxz"
+14 => "ABCDEFGHJLNQRSVWXZabcdghiklmnpsuvxz"
+15 => "Tty"
+16 => "LZk"
+17 => "DFbv"
+18 => "Jcx"
+19 => "Tty"
+20 => "DFbv"
+21 => "GHmn"
+22 => "LZk"
+23 => "GHmn"
+```
+3. We see that if the 14th pattern reaches to 35-character length, it gonna stay the same, the the 13th continue to vary until it reached its limit. The same thing applies to 13th pattern. So the question is which position it gonna stop. We find out 10 groups from `GHmn` to `ERui` has total characters of 35. They equal the limit of 14th pattern.Moreover, the group `Tty` does not exist in the 14th pattern. Therefore we can assume it can be served as a delimiter or something else. 10 groups maybe represent base ten, so the boundary can be assumed from 4th to 15th. Next step, we observe the length from 5th to 14th is equal to 10. It is coincident to the length of aid (album_id showed in number) (EX: 1381585030). So our assumption is perhaps correct. The problem now is to find a  mapping of each group to single digit in base 10. Find two consecutive albums and look at the change in the 14th position of aid in the albums, hence we have the example hash table:  
+```bash
+1381585330 => "LnJmyknNdNSvZBHTkDJTvHkn" : 14th position is "H"
+1381585331 => "kmJmTLHsdalFLVLyLDJTbGZG" : 14th position is "L"
+........................................
+1381585339 => "kncmTkHsdsAvkduyLFJyDnLG" : 14th position is "u"
+```
+
+4. We come to an order of 10 groups as `GHmn`<`LZk`<`DFbv`<`BVd`<`ASlz`<`QWp`<`ghXC`<`Nas`<`Jcx`<`ERui`. They are equivalent to the digits from 0,1,2 to 9. EX: we test with the string `LnJmyknNdNSvZBHTkDJTvHkn`(1381585330). At firstly remove the trivial positions from 0 to 4, 15 to 23 as the group `Tty` is the delimiter to get `knNdNSvZBH` and convert it into nummerical system. We have `1073742130`. The difference between the result and the original number is `307843200`.   
+
+5. It is almost complete. Now given a real album_id, ex: `1382365302` . We subtract by `307843200` and generate from the calculated result to get string which each digit is equivalent to each group. Finally it is end up with `ZGJGTknazpbbknbTZDJTDGLG` [http://m.mp3.zing.vn/xml/song/ZGJGTknazpbbknbTZDJTDGLG](http://m.mp3.zing.vn/xml/song/ZGJGTknazpbbknbTZDJTDGLG). Look at the folowing code:  
+```coffeescript
+encryptId = (id) ->
+		a = "nkbdzphacu".split('')
+		"ZGJGT" + (id-307843200).toString().split('').map((v)-> a[v]).join('') + "TZDJTDGLG"
+```
+
 * Using search (not recommended)
 [http://mp3.zing.vn/suggest/search?term=toi](http://mp3.zing.vn/suggest/search?term=toi)
 > `term` is artist or song in database
@@ -395,11 +475,14 @@ only available in 6hours due to the consistency between the hash `4ce95480fb0b14
 [http://m.mp3.zing.vn/xml/album/LGxnyLnsVcbZDdbtLvJyvGLG](http://m.mp3.zing.vn/xml/album/LGxnyLnsVcbZDdbtLvJyvGLG)  
 
 * Get song  
+[http://m.mp3.zing.vn/xml/song/ZGJGTknazzupuzaTZDJTDGLG](http://m.mp3.zing.vn/xml/song/ZGJGTknazzupuzaTZDJTDGLG)  
+[http://mp3.zing.vn/download/song/Chi-Con-Lai-Tinh-Yeu-Bui-Anh-Tuan/ZGJGyLGNldSnHdptLDcyvmLn](http://mp3.zing.vn/download/song/Chi-Con-Lai-Tinh-Yeu-Bui-Anh-Tuan/ZGJGyLGNldSnHdptLDcyvmLn)  
+==>> the encrypted links  
 [http://mp3.zing.vn/xml/load-song/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=](http://mp3.zing.vn/xml/load-song/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=)  
 [http://m.mp3.zing.vn/xml/song-load/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=](http://m.mp3.zing.vn/xml/song-load/MjAxMSUyRjAyJTJGMjIlMkZlJTJGYSUyRmVhMWI5OTU4YWY5MTM5YjA2ODE5MTU2NzFlMjVhN2JiLm1wMyU3QzI=)  
 * Get video  
 [http://mp3.zing.vn/xml/video-xml/kGJmykGaBaavclGykbcybmLn](http://mp3.zing.vn/xml/video-xml/kGJmykGaBaavclGykbcybmLn)  
-
+[http://mp3.zing.vn/html5/video/ZGJmykHslWmJsmZySJmybGZm](http://mp3.zing.vn/html5/video/ZGJmykHslWmJsmZySJmybGZm)  
 ```bash
 http://channelz.mp3.zdn.vn/zv/0da2d1cd79cb1ed7e303c032c86fd20b/5111e350/file_uploads/video/2010/9/23/3/8/38a4b0133afa3796f3f4d443d6f88c72.mp4
 ```
@@ -468,6 +551,11 @@ Check duplicated albums in database. EX: albumid `I1umglqa8dMM` has 2 performers
 *STATS* ~251797 songs, ~26853 albums, ~ 21057+119647 videos on feb 10
 
 * Checking the hidden values: `inpHiddenSongKey`, `inpHiddenId`, `inpHiddenType`, `inpHiddenGenre`, `inpHiddenSingerIds`, `inpLyricId`  in every song, album or music video  
+
+
+
+
+knxmykmadxvkNNZtØØØyvmkn
 
 **Notice: the pair (songid,albumid) gonna be duplicated while updating new albums. Be careful when use it**
 
