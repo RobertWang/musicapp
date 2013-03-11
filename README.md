@@ -372,6 +372,7 @@ convertToInt = (id)->
 1381585044 => "ZncGyLnsBaSkJAltZbctFGkm"
 ```
 2. Invert the matrix and find the repeated characters in each row. The more M rows are fetched, the more precise they are. Tested with ~70000 albums EX: a inversed matrix of 50x24 gonna be  
+
 ```coffeescript
 LLkZZZkLLLLLkZLZLkZLkLLZZkLLLkkkLZLLLkZLZZkZLZLZZL:0 => "LZk"
 HGHnnHmmHGnHnnnHGmHGmmnnmGHnHHmHmmHGmHnGHmmmGmGGmG:1 => "GHmn"
@@ -400,6 +401,7 @@ HnnGnHnnnHnHGmmHmnnHGHmmnnmmmmmHHnHmnHGHmGmGmHHHmm:23 => "GHmn"
 ```  
 
 3. It's showed that each single character in the group `LZk` represents a same symbol (number or character or whatever). There are 11 groups : `GHmn`, `LZk`, `DFbv`, `BVd`, `ASlz`, `QWp`, `ghXC`, `Nas`, `Jcx`, `ERui` and `Tty`. Try with different number of albums. We will see the patterns at position 15,14,13... tend to vary in size as we increase the number of albums in ascendant order. EX: result of 50000x24 matrix  
+
 ```coffeescript
 0 => "LZk"
 1 => "GHmn"
