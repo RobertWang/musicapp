@@ -430,7 +430,7 @@ HnnGnHnnnHnHGmmHmnnHGHmmnnmmmmmHHnHmnHGHmGmGmHHHmm:23 => "GHmn"
 23 => "GHmn"
 ```
 
-3.We see that if the 14th pattern reaches to 35-character length, it gonna stay the same, the the 13th continue to vary until it reached its limit. The same thing applies to 13th pattern. So the question is which position it gonna stop. We find out 10 groups from `GHmn` to `ERui` has total characters of 35. They equal the limit of 14th pattern.Moreover, the group `Tty` does not exist in the 14th pattern. Therefore we can assume it can be served as a delimiter or something else. 10 groups maybe represent base ten, so the boundary can be assumed from 4th to 15th. Next step, we observe the length from 5th to 14th is equal to 10. It is coincident to the length of aid (album_id showed in number) (EX: 1381585030). So our assumption is perhaps correct. The problem now is to find a  mapping of each group to single digit in base 10. Find two consecutive albums and look at the change in the 14th position of aid in the albums, hence we have the example hash table:  
+4.We see that if the 14th pattern reaches to 35-character length, it gonna stay the same, the the 13th continue to vary until it reached its limit. The same thing applies to 13th pattern. So the question is which position it gonna stop. We find out 10 groups from `GHmn` to `ERui` has total characters of 35. They equal the limit of 14th pattern.Moreover, the group `Tty` does not exist in the 14th pattern. Therefore we can assume it can be served as a delimiter or something else. 10 groups maybe represent base ten, so the boundary can be assumed from 4th to 15th. Next step, we observe the length from 5th to 14th is equal to 10. It is coincident to the length of aid (album_id showed in number) (EX: 1381585030). So our assumption is perhaps correct. The problem now is to find a  mapping of each group to single digit in base 10. Find two consecutive albums and look at the change in the 14th position of aid in the albums, hence we have the example hash table:  
 ```coffeescript
 1381585330 => "LnJmyknNdNSvZBHTkDJTvHkn" : 14th position is "H"
 1381585331 => "kmJmTLHsdalFLVLyLDJTbGZG" : 14th position is "L"
@@ -438,9 +438,9 @@ HnnGnHnnnHnHGmmHmnnHGHmmnnmmmmmHHnHmnHGHmGmGmHHHmm:23 => "GHmn"
 1381585339 => "kncmTkHsdsAvkduyLFJyDnLG" : 14th position is "u"
 ```
 
-4.We come to an order of 10 groups as `GHmn`<`LZk`<`DFbv`<`BVd`<`ASlz`<`QWp`<`ghXC`<`Nas`<`Jcx`<`ERui`. They are equivalent to the digits from 0,1,2 to 9. EX: we test with the string `LnJmyknNdNSvZBHTkDJTvHkn`(1381585330). At firstly remove the trivial positions from 0 to 4, 15 to 23 as the group `Tty` is the delimiter to get `knNdNSvZBH` and convert it into nummerical system. We have `1073742130`. The difference between the result and the original number is `307843200`.   
+5.We come to an order of 10 groups as `GHmn`<`LZk`<`DFbv`<`BVd`<`ASlz`<`QWp`<`ghXC`<`Nas`<`Jcx`<`ERui`. They are equivalent to the digits from 0,1,2 to 9. EX: we test with the string `LnJmyknNdNSvZBHTkDJTvHkn`(1381585330). At firstly remove the trivial positions from 0 to 4, 15 to 23 as the group `Tty` is the delimiter to get `knNdNSvZBH` and convert it into nummerical system. We have `1073742130`. The difference between the result and the original number is `307843200`.   
 
-5.It is almost complete. Now given a real album_id, ex: `1382365302` . We subtract by `307843200` and generate from the calculated result to get string which each digit is equivalent to each group. Finally it is end up with `ZGJGTknazpbbknbTZDJTDGLG` [http://m.mp3.zing.vn/xml/song/ZGJGTknazpbbknbTZDJTDGLG](http://m.mp3.zing.vn/xml/song/ZGJGTknazpbbknbTZDJTDGLG). Look at the folowing code:  
+6.It is almost complete. Now given a real album_id, ex: `1382365302` . We subtract by `307843200` and generate from the calculated result to get string which each digit is equivalent to each group. Finally it is end up with `ZGJGTknazpbbknbTZDJTDGLG` [http://m.mp3.zing.vn/xml/song/ZGJGTknazpbbknbTZDJTDGLG](http://m.mp3.zing.vn/xml/song/ZGJGTknazpbbknbTZDJTDGLG). Look at the folowing code:  
 ```coffeescript
 encryptId = (id) ->
 		a = "nkbdzphacu".split('')
