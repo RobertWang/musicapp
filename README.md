@@ -397,9 +397,10 @@ DFDFFDbDDFDFFFvDDDDbDDDvbFbbbDvbDDFbDbvvFvFFDFbbDD:20 => "DFbv"
 mnmHmnnmGnGGnGnnGmHmGmnnHnnHmGmGGnmnmHHGmnGGmHmHnG:21 => "GHmn"
 kLLLLkkLLZLLZkkZLLkLLLLLZZLkZZLZZLZLLLLZZkkLZZLZLZ:22 => "LZk"
 HnnGnHnnnHnHGmmHmnnHGHmmnnmmmmmHHnHmnHGHmGmGmHHHmm:23 => "GHmn"
-```
+```  
+
 3. It's showed that each single character in the group `LZk` represents a same symbol (number or character or whatever). There are 11 groups : `GHmn`, `LZk`, `DFbv`, `BVd`, `ASlz`, `QWp`, `ghXC`, `Nas`, `Jcx`, `ERui` and `Tty`. Try with different number of albums. We will see the patterns at position 15,14,13... tend to vary in size as we increase the number of albums in ascendant order. EX: result of 50000x24 matrix  
-```bash
+```coffeescript
 0 => "LZk"
 1 => "GHmn"
 2 => "Jcx"
@@ -425,8 +426,9 @@ HnnGnHnnnHnHGmmHmnnHGHmmnnmmmmmHHnHmnHGHmGmGmHHHmm:23 => "GHmn"
 22 => "LZk"
 23 => "GHmn"
 ```
+
 3. We see that if the 14th pattern reaches to 35-character length, it gonna stay the same, the the 13th continue to vary until it reached its limit. The same thing applies to 13th pattern. So the question is which position it gonna stop. We find out 10 groups from `GHmn` to `ERui` has total characters of 35. They equal the limit of 14th pattern.Moreover, the group `Tty` does not exist in the 14th pattern. Therefore we can assume it can be served as a delimiter or something else. 10 groups maybe represent base ten, so the boundary can be assumed from 4th to 15th. Next step, we observe the length from 5th to 14th is equal to 10. It is coincident to the length of aid (album_id showed in number) (EX: 1381585030). So our assumption is perhaps correct. The problem now is to find a  mapping of each group to single digit in base 10. Find two consecutive albums and look at the change in the 14th position of aid in the albums, hence we have the example hash table:  
-```bash
+```coffeescript
 1381585330 => "LnJmyknNdNSvZBHTkDJTvHkn" : 14th position is "H"
 1381585331 => "kmJmTLHsdalFLVLyLDJTbGZG" : 14th position is "L"
 ........................................
@@ -441,6 +443,7 @@ encryptId = (id) ->
 		a = "nkbdzphacu".split('')
 		"ZGJGT" + (id-307843200).toString().split('').map((v)-> a[v]).join('') + "TZDJTDGLG"
 ```
+
 
 * Using search (not recommended)
 [http://mp3.zing.vn/suggest/search?term=toi](http://mp3.zing.vn/suggest/search?term=toi)
